@@ -39,7 +39,7 @@ Scope {
 
 		onCompleted: result => {
 			if (result === PamResult.Success) {
-				root.lock.locked = false;
+				root.lock.unlock();
 			} else {
 				root.currentText = "";
 				root.showFailure = true;

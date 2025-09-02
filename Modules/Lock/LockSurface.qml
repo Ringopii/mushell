@@ -18,6 +18,14 @@ WlSessionLockSurface {
 
 	property bool isWallReady: false
 
+	Connections {
+		target: root.lock
+
+		function onUnlock(): void {
+			out.start();
+		}
+	}
+
 	Rectangle {
 		id: surface
 		anchors.fill: parent
@@ -199,6 +207,54 @@ WlSessionLockSurface {
 				}
 			}
 		}
+	}
+
+	NumberAnimation {
+		id: out
+
+		target: wall
+		property: "opacity"
+		from: 1
+		to: 0
+		duration: Appearance.animations.durations.small * 1.2
+		easing.type: Easing.BezierSpline
+		easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+
+		onFinished: {
+			outAnim.start();
+		}
+	}
+
+	SequentialAnimation {
+		id: outAnim
+
+		NumberAnimation {
+			target: clockContainer
+			property: "opacity"
+			from: 1
+			to: 0
+			duration: Appearance.animations.durations.large
+			easing.type: Easing.BezierSpline
+			easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+		}
+
+		NumberAnimation {
+			target: inputContainer
+			property: "opacity"
+			from: 1
+			to: 0
+			duration: Appearance.animations.durations.normal
+			easing.type: Easing.BezierSpline
+			easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+		}
+
+		PropertyAction {
+			target: root.lock
+			property: "locked"
+			value: false
+		}
+
+		
 	}
 
 	NumberAnimation {

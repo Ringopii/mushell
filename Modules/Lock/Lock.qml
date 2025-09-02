@@ -36,7 +36,7 @@ Scope {
 		}
 
 		function unlock(): void {
-			lock.locked = false;
+			lock.unlock();
 		}
 
 		function isLocked(): bool {
