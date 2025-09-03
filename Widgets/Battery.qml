@@ -31,11 +31,13 @@ Rectangle {
 		icon {
 			color: Appearance.colors.tertiary
 			font.family: Appearance.fonts.family_Mono
+			font.pixelSize: Appearance.fonts.normal
 			text: (batCharging) ? root.chargeIcon : root.batIcon
 		}
 
 		text {
 			color: Appearance.colors.tertiary
+			font.pixelSize: Appearance.fonts.normal
 			text: (UPower.displayDevice.percentage * 100).toFixed(0) + "%"
 		}
 	}

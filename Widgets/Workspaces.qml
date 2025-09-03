@@ -13,7 +13,7 @@ RowLayout {
     Rectangle {
         id: workspaceBar
         Layout.preferredWidth: Math.max(50, Workspaces.maxWorkspace * 25)
-		Layout.fillHeight: true
+		height: 25
 		border.color: Appearance.colors.on_background
 		radius: Appearance.rounding.small
         color: Appearance.colors.background
@@ -36,7 +36,7 @@ RowLayout {
                         id: workspaceText
                         text: (index + 1).toString()
                         color: Appearance.colors.on_background
-                        font.pixelSize: 15
+                        font.pixelSize: Appearance.fonts.normal
 						font.bold: focused
                     }
 

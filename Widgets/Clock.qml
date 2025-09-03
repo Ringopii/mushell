@@ -20,6 +20,7 @@ Rectangle {
 			id: icon
 
 			color: Appearance.colors.on_background
+			font.pixelSize: Appearance.fonts.normal
 			text: "schedule"
 		}
 
@@ -27,7 +28,7 @@ Rectangle {
 			id: text
 
 			color: Appearance.colors.on_background
-			font.pointSize: 11
+			font.pixelSize: Appearance.fonts.normal
 			text: Qt.formatDateTime(Time?.date, "h:mm AP")
 		}
 	}

@@ -33,16 +33,18 @@ Rectangle {
 	Dots {
 		id: container
 
-		spacing: 10
+		spacing: 5
 
 		icon {
 			color: Appearance.colors.on_background
 			text: root.icon
+			font.pixelSize: Appearance.fonts.large * 1.2
 		}
 
 		text {
 			color: Appearance.colors.on_background
 			text: (node.audio.volume * 100).toFixed(0) + "%"
+			font.pixelSize: Appearance.fonts.normal
 		}
 	}
 

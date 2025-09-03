@@ -17,12 +17,14 @@ Rectangle {
 
 		icon {
 			color: Appearance.colors.tertiary
-			font.family:  Appearance.fonts.family_Mono
+			font.family: Appearance.fonts.family_Mono
+			font.pixelSize: Appearance.fonts.normal
 			text: "󱄅"
 		}
 
 		text {
 			color: Appearance.colors.tertiary
+font.pixelSize: Appearance.fonts.normal
 			text: "NixOS"
 		}
 	}

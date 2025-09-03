@@ -33,9 +33,9 @@ Rectangle {
 		anchors.centerIn: parent
 		color: Appearance.colors.on_primary_container
 		elide: Text.ElideMiddle
-		font.pointSize: 11
+		font.pixelSize: Appearance.fonts.normal
 		horizontalAlignment: Text.AlignHCenter
 		text: actWinName
-		width: (contentWidth > root.maximumWidth) ? root.maximumWidth : undefined
+		width: root.maximumWidth
 	}
 }
