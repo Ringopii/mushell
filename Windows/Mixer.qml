@@ -8,9 +8,8 @@ import qs.Widgets
 import qs.Data
 
 FloatingWindow {
-	// match the system theme background color
 	visible: false
-	color: Appearance.colors.background
+	color: Appearance.colors.withAlpha(Appearance.colors.background, 0.7)
 
 	ScrollView {
 		anchors.fill: parent
@@ -20,7 +19,6 @@ FloatingWindow {
 			anchors.fill: parent
 			anchors.margins: 10
 
-			// get a list of nodes that output to the default sink
 			PwNodeLinkTracker {
 				id: linkTracker
 				node: Pipewire.defaultAudioSink
@@ -41,8 +39,6 @@ FloatingWindow {
 
 				Mixer {
 					required property PwLinkGroup modelData
-					// Each link group contains a source and a target.
-					// Since the target is the default sink, we want the source.
 					node: modelData.source
 				}
 			}

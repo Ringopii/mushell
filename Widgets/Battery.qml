@@ -26,18 +26,18 @@ Rectangle {
 	Dots {
 		id: container
 
-		spacing: 10
+		spacing: Appearance.spacing.small
 
 		icon {
 			color: Appearance.colors.tertiary
 			font.family: Appearance.fonts.family_Mono
-			font.pixelSize: Appearance.fonts.normal
+			font.pixelSize: Appearance.fonts.medium * 1.4
 			text: (batCharging) ? root.chargeIcon : root.batIcon
 		}
 
 		text {
 			color: Appearance.colors.tertiary
-			font.pixelSize: Appearance.fonts.normal
+			font.pixelSize: Appearance.fonts.medium
 			text: (UPower.displayDevice.percentage * 100).toFixed(0) + "%"
 		}
 	}

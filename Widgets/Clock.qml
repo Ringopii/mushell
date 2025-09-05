@@ -9,7 +9,6 @@ Rectangle {
 
 	Layout.fillHeight: true
 	color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
-	border.color: Appearance.colors.on_background
 	implicitWidth: timeContainer.width + padding
 	radius: Appearance.rounding.small
 
@@ -20,7 +19,8 @@ Rectangle {
 			id: icon
 
 			color: Appearance.colors.on_background
-			font.pixelSize: Appearance.fonts.normal
+			font.bold: true
+			font.pixelSize: Appearance.fonts.medium * 1.4
 			text: "schedule"
 		}
 
@@ -28,7 +28,8 @@ Rectangle {
 			id: text
 
 			color: Appearance.colors.on_background
-			font.pixelSize: Appearance.fonts.normal
+			font.bold: true
+			font.pixelSize: Appearance.fonts.medium
 			text: Qt.formatDateTime(Time?.date, "h:mm AP")
 		}
 	}

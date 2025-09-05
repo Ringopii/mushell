@@ -25,7 +25,7 @@ RowLayout {
 
       anchors.centerIn: parent
       font.family: Appearance.fonts.family_Material
-      font.pointSize: 16
+      font.pixelSize: Appearance.fonts.medium
     }
   }
 
@@ -40,7 +40,7 @@ RowLayout {
 
       anchors.centerIn: parent
       font.family: Appearance.fonts.family_Mono
-      font.pointSize: 11
+      font.pixelSize: Appearance.fonts.small
     }
   }
 }

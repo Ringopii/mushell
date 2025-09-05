@@ -3,15 +3,18 @@ import qs.Modules.Lock
 import qs.Modules.Bar
 import qs.Modules.Wallpaper
 import qs.Modules.Session
+import qs.Modules.Launcher
 
 import QtQuick
 import Quickshell
 
 ShellRoot {
 	Bar {}
-	Lock {}
+	Lockscreen {}
 	Wall {}
 	Session {}
+	App {}
+	Screencapture {}
 
 	Connections {
 		function onReloadCompleted() {

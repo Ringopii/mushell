@@ -44,7 +44,7 @@ Rectangle {
 		text {
 			color: Appearance.colors.on_background
 			text: (node.audio.volume * 100).toFixed(0) + "%"
-			font.pixelSize: Appearance.fonts.normal
+			font.pixelSize: Appearance.fonts.medium
 		}
 	}
 

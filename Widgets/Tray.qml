@@ -18,8 +18,8 @@ Rectangle {
 	// width: calculatedWidth
 	height: widgetHeight
 	radius: Appearance.rounding.small
-	border.color: Appearance.colors.on_background
-	color: Appearance.colors.background
+	// border.color: Appearance.colors.on_background
+	color: "transparent"
 	visible: SystemTray.items.values.length > 0
 
 	Behavior on Layout.preferredWidth {
@@ -33,7 +33,7 @@ Rectangle {
 	Row {
 		id: systemTrayRow
 		anchors.centerIn: parent
-		spacing: 0
+		spacing: 5
 
 		Repeater {
 			model: SystemTray.items.values
@@ -56,13 +56,13 @@ Rectangle {
 					return "";
 				}
 
-				width: 24
-				height: 24
+				width: 30
+				height: 30
 
 				Rectangle {
 					anchors.fill: parent
 					radius: Appearance.rounding.small
-					color: trayItemArea.containsMouse ? Appearance.colors.primary : "transparent"
+					color: trayItemArea.containsMouse ? Appearance.colors.primary : ""
 					Behavior on color {
 						enabled: trayItemArea.containsMouse !== undefined
 						NumberAnimation {
@@ -75,8 +75,8 @@ Rectangle {
 
 				IconImage {
 					anchors.centerIn: parent
-					width: Appearance.fonts.large
-					height: Appearance.fonts.large
+					width: Appearance.fonts.large * 1.2 
+					height: Appearance.fonts.large * 1.2 
 					source: parent.iconSource
 					asynchronous: true
 					smooth: true

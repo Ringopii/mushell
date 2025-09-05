@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 import qs.Data
 
 Scope {
@@ -17,16 +18,23 @@ Scope {
 				right: true
 				top: true
 			}
-			color: Appearance.colors.background
+			color: "transparent"
+			WlrLayershell.namespace: "shell"
 			screen: modelData
 			exclusionMode: ExclusionMode.Auto
 			focusable: false
-			implicitHeight: 30
+			implicitHeight: 40
 			exclusiveZone: 1
 			surfaceFormat.opaque: false
+			margins.top: 2
+			margins.left: 2
+			margins.right: 2
 
-			Item {
+			Rectangle {
 				id: base
+
+				color: Appearance.colors.background
+				radius: Appearance.rounding.large
 				anchors.fill: parent
 				anchors.margins: 4
 
@@ -36,19 +44,19 @@ Scope {
 
 					Left {
 						Layout.fillHeight: true
-						Layout.preferredWidth: parent.width / 6 
+						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 					}
 
 					Middle {
 						Layout.fillHeight: true
-						Layout.preferredWidth: parent.width / 6 
+						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignCenter
 					}
 
 					Right {
 						Layout.fillHeight: true
-						Layout.preferredWidth: parent.width / 6 
+						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 					}
 				}

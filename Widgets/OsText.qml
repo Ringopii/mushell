@@ -18,14 +18,8 @@ Rectangle {
 		icon {
 			color: Appearance.colors.tertiary
 			font.family: Appearance.fonts.family_Mono
-			font.pixelSize: Appearance.fonts.normal
+			font.pixelSize: Appearance.fonts.large * 1.7
 			text: "󱄅"
-		}
-
-		text {
-			color: Appearance.colors.tertiary
-font.pixelSize: Appearance.fonts.normal
-			text: "NixOS"
 		}
 	}
 }

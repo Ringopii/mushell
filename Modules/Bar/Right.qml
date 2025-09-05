@@ -17,6 +17,11 @@ Item {
 			Layout.alignment: Qt.AlignVCenter
 			Layout.maximumWidth: implicitWidth
 		}
+		Tray {
+			Layout.alignment: Qt.AlignVCenter
+			parentWindow: root
+			parentScreen: root.modelData
+		}
 		PowerProfiles {
 			Layout.alignment: Qt.AlignVCenter
 			Layout.maximumWidth: implicitWidth
@@ -33,13 +38,6 @@ Item {
 		Battery {
 			Layout.alignment: Qt.AlignVCenter
 			Layout.maximumWidth: implicitWidth
-		}
-		Tray {
-			Layout.alignment: Qt.AlignVCenter
-            Layout.maximumWidth: calculatedWidth
-			// Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-			parentWindow: root
-			parentScreen: root.modelData
 		}
 		
 		// Item {

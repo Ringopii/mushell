@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.Mpris
@@ -7,6 +9,7 @@ import qs.Helpers
 
 Rectangle {
 	id: rect
+
 	Layout.fillHeight: true
 	border.color: Appearance.colors.on_background
 	radius: Appearance.rounding.small
@@ -20,7 +23,7 @@ Rectangle {
 		anchors.fill: parent
 		hoverEnabled: true
 
-		property int contentWidth: baseWidth
+		property int contentWidth: parent.baseWidth
 
 		Row {
 			anchors.centerIn: parent
@@ -59,7 +62,7 @@ Rectangle {
 						MatIcon {
 							color: Appearance.colors.primary
 							fill: mArea.containsMouse
-							font.pointSize: Appearance.fonts.normal * 1.4
+							font.pixelSize: Appearance.fonts.normal * 1.4
 							icon: mediaContainer.player.playbackState === MprisPlaybackState.Playing ? "genres" : "play_circle"
 						}
 
@@ -158,7 +161,7 @@ Rectangle {
 								MatIcon {
 									anchors.centerIn: parent
 									color: Appearance.colors.on_primary
-									font.pointSize: Appearance.fonts.small * 0.9
+									font.pixelSize: Appearance.fonts.large * 1.2
 									icon: delegateRoot.modelData.icon
 								}
 							}

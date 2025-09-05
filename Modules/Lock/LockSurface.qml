@@ -200,7 +200,7 @@ WlSessionLockSurface {
 						root.pam.tryUnlock()
 					onTextChanged: if (root.pam)
 						root.pam.currentText = this.text
-					Layout.alignment: Qt.AlignVBottom
+					Layout.alignment: Qt.AlignVCenter
 					Connections {
 						function onCurrentTextChanged() {
 							passwordBox.text = root.pam.currentText;

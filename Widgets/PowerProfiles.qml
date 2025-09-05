@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Services.UPower
 
 import qs.Data
@@ -75,8 +76,8 @@ Rectangle {
 							enabled: !delegateRoot.isAnimating
 							NumberAnimation {
 								duration: Appearance.animations.durations.normal
-                        easing.type: Easing.BezierSpline
-                        easing.bezierCurve: Appearance.animations.curves.standard
+								easing.type: Easing.BezierSpline
+								easing.bezierCurve: Appearance.animations.curves.standard
 							}
 						}
 
@@ -91,8 +92,8 @@ Rectangle {
 									from: 1.0
 									to: 1.15
 									duration: Appearance.animations.durations.small
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
 								}
 								NumberAnimation {
 									target: bgCon
@@ -100,8 +101,8 @@ Rectangle {
 									from: 1.0
 									to: 0.7
 									duration: Appearance.animations.durations.small
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
 								}
 							}
 
@@ -111,8 +112,8 @@ Rectangle {
 									from: 1.15
 									to: 1.0
 									duration: Appearance.animations.durations.normal
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
 								}
 								NumberAnimation {
 									target: bgCon
@@ -120,8 +121,8 @@ Rectangle {
 									from: 0.7
 									to: 1.0
 									duration: Appearance.animations.durations.normal
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
 								}
 							}
 						}
@@ -154,8 +155,8 @@ Rectangle {
 									from: 0
 									to: Math.max(clickArea.width, clickArea.height) * 2
 									duration: Appearance.animations.durations.large
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.expressiveDefaultSpatial
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.expressiveDefaultSpatial
 								}
 
 								SequentialAnimation {
@@ -165,8 +166,8 @@ Rectangle {
 										from: 0
 										to: 0.3
 										duration: Appearance.animations.durations.small
-                                easing.type: Easing.BezierSpline
-                                easing.bezierCurve: Appearance.animations.curves.standardAccel
+										easing.type: Easing.BezierSpline
+										easing.bezierCurve: Appearance.animations.curves.standardAccel
 									}
 									NumberAnimation {
 										target: rippleEffect
@@ -174,8 +175,8 @@ Rectangle {
 										from: 0.3
 										to: 0
 										duration: Appearance.animations.durations.normal
-                                easing.type: Easing.BezierSpline
-                                easing.bezierCurve: Appearance.animations.curves.standardDecel
+										easing.type: Easing.BezierSpline
+										easing.bezierCurve: Appearance.animations.curves.standardDecel
 									}
 								}
 							}
@@ -194,8 +195,8 @@ Rectangle {
 									from: 1.0
 									to: 0.95
 									duration: Appearance.animations.durations.small
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
 								}
 
 								ScaleAnimator {
@@ -203,8 +204,8 @@ Rectangle {
 									from: 1.0
 									to: 0.9
 									duration: Appearance.animations.durations.small
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.emphasized
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.emphasized
 								}
 
 								ScriptAction {
@@ -218,8 +219,8 @@ Rectangle {
 									from: 0.95
 									to: 1.0
 									duration: Appearance.animations.durations.expressiveFastSpatial
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatial
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatial
 								}
 
 								ScaleAnimator {
@@ -227,8 +228,8 @@ Rectangle {
 									from: 0.9
 									to: 1.0
 									duration: Appearance.animations.durations.expressiveFastSpatial
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatial
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatial
 								}
 							}
 
@@ -256,15 +257,15 @@ Rectangle {
 						anchors.centerIn: parent
 						color: bgCon.visible ? Appearance.colors.on_primary : Appearance.colors.on_background
 						fill: bgCon.visible || clickArea.containsMouse
-						font.pointSize: Appearance.fonts.normal
+						font.pixelSize: Appearance.fonts.small * 1.7
 						icon: delegateRoot.modelData.icon
 
 						Behavior on color {
 							enabled: !delegateRoot.isAnimating
 							ColorAnimation {
 								duration: Appearance.animations.durations.normal
-                        easing.type: Easing.BezierSpline
-                        easing.bezierCurve: Appearance.animations.curves.standard
+								easing.type: Easing.BezierSpline
+								easing.bezierCurve: Appearance.animations.curves.standard
 							}
 						}
 
@@ -272,8 +273,8 @@ Rectangle {
 							enabled: !delegateRoot.isAnimating
 							NumberAnimation {
 								duration: Appearance.animations.durations.expressiveEffects
-                        easing.type: Easing.BezierSpline
-                        easing.bezierCurve: Appearance.animations.curves.expressiveEffects
+								easing.type: Easing.BezierSpline
+								easing.bezierCurve: Appearance.animations.curves.expressiveEffects
 							}
 						}
 
