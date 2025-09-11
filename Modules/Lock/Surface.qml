@@ -52,7 +52,7 @@ WlSessionLockSurface {
 
 			anchors {
 				centerIn: parent
-				verticalCenterOffset: -80 
+				verticalCenterOffset: -80
 			}
 			spacing: Appearance.spacing.normal
 			opacity: 0
@@ -63,7 +63,7 @@ WlSessionLockSurface {
 
 		ColumnLayout {
 			id: inputContainer
-			
+
 			spacing: Appearance.spacing.larger
 			opacity: 0
 			scale: 0.95
@@ -79,7 +79,7 @@ WlSessionLockSurface {
 				Layout.alignment: Qt.AlignHCenter
 				Layout.preferredHeight: errorLabel.implicitHeight + Appearance.padding.normal * 2
 				Layout.preferredWidth: Math.max(errorLabel.implicitWidth + Appearance.padding.large * 2, 200)
-				
+
 				color: Appearance.colors.error_container
 				radius: Appearance.rounding.normal
 				visible: root.pam ? root.pam.showFailure : false
@@ -104,7 +104,9 @@ WlSessionLockSurface {
 							properties: "opacity,scale"
 							to: 1
 						}
-						PauseAnimation { duration: 2000 }
+						PauseAnimation {
+							duration: 2000
+						}
 						PropertyAnimation {
 							duration: Appearance.animations.durations.normal
 							easing.bezierCurve: Appearance.animations.curves.standard
@@ -128,7 +130,8 @@ WlSessionLockSurface {
 			PropertyAnimation {
 				target: clockContainer
 				properties: "opacity,scale"
-				from: 1; to: 0
+				from: 1
+				to: 0
 				duration: Appearance.animations.durations.expressiveFastSpatial
 				easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
 			}
@@ -136,7 +139,8 @@ WlSessionLockSurface {
 			PropertyAnimation {
 				target: inputContainer
 				properties: "opacity,scale"
-				from: 1; to: 0
+				from: 1
+				to: 0
 				duration: Appearance.animations.durations.normal
 				easing.bezierCurve: Appearance.animations.curves.emphasizedAccel
 			}
@@ -157,18 +161,22 @@ WlSessionLockSurface {
 			PropertyAnimation {
 				target: clockContainer
 				properties: "opacity,scale"
-				from: 0; to: 1
+				from: 0
+				to: 1
 				duration: Appearance.animations.durations.expressiveDefaultSpatial
 				easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
 			}
 
 			SequentialAnimation {
-				PauseAnimation { duration: Appearance.animations.durations.small }
-				
+				PauseAnimation {
+					duration: Appearance.animations.durations.small
+				}
+
 				PropertyAnimation {
 					target: inputContainer
 					properties: "opacity,scale"
-					from: 0; to: 1
+					from: 0
+					to: 1
 					duration: Appearance.animations.durations.normal
 					easing.bezierCurve: Appearance.animations.curves.emphasizedDecel
 				}
@@ -189,11 +197,12 @@ WlSessionLockSurface {
 
 	SequentialAnimation {
 		id: errorShakeAnimation
-		
+
 		PropertyAnimation {
 			target: inputContainer
 			property: "anchors.horizontalCenterOffset"
-			from: 0; to: -8
+			from: 0
+			to: -8
 			duration: Appearance.animations.durations.small * 0.8
 			easing.type: Easing.BezierSpline
 			easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatialChanged
@@ -201,7 +210,8 @@ WlSessionLockSurface {
 		PropertyAnimation {
 			target: inputContainer
 			property: "anchors.horizontalCenterOffset"
-			from: -8; to: 8
+			from: -8
+			to: 8
 			duration: Appearance.animations.durations.small * 0.8
 			easing.type: Easing.BezierSpline
 			easing.bezierCurve: Appearance.animations.curves.standardAccel
@@ -209,7 +219,8 @@ WlSessionLockSurface {
 		PropertyAnimation {
 			target: inputContainer
 			property: "anchors.horizontalCenterOffset"
-			from: 8; to: -4
+			from: 8
+			to: -4
 			duration: Appearance.animations.durations.small * 0.8
 			easing.type: Easing.BezierSpline
 			easing.bezierCurve: Appearance.animations.curves.standardAccel
@@ -217,7 +228,8 @@ WlSessionLockSurface {
 		PropertyAnimation {
 			target: inputContainer
 			property: "anchors.horizontalCenterOffset"
-			from: -4; to: 0
+			from: -4
+			to: 0
 			duration: Appearance.animations.durations.small * 0.8
 			easing.type: Easing.BezierSpline
 			easing.bezierCurve: Appearance.animations.curves.expressiveFastSpatialChanged
