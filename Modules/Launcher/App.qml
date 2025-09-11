@@ -6,17 +6,17 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import QtQuick.Controls
 
 import qs.Data
+import qs.Components
 import qs.Helpers
 
 Scope {
 	id: root
-	required property string searchText
 	property int currentIndex: 0
 
+	// Thx caelestia
 	function launch(entry: DesktopEntry): void {
 		if (entry.runInTerminal)
 			Quickshell.execDetached({
@@ -33,12 +33,11 @@ Scope {
 	PanelWindow {
 		id: launcher
 		property bool isLauncherOpen: false
-		required property ShellScreen modelData
+		property ShellScreen modelData
 
 		anchors {
 			left: true
-			top: true
-			bottom: true
+			right: true
 		}
 
 		WlrLayershell.namespace: "shell"
@@ -48,28 +47,80 @@ Scope {
 		color: "transparent"
 		screen: modelData
 		exclusiveZone: 0
-		implicitWidth: 500
+		implicitWidth: 300
+		implicitHeight: 600
+		margins.left: 500
+		margins.right: 500
+		margins.top: 50
+		margins.bottom: 50
 
 		Rectangle {
 			id: rectLauncher
+
 			anchors.fill: parent
+
 			radius: Appearance.rounding.large
 			color: Appearance.colors.withAlpha(Appearance.colors.background, 0.7)
 
-			Column {
+			ColumnLayout {
 				anchors.fill: parent
 				anchors.margins: Appearance.padding.normal
-				spacing: Appearance.spacing.small * 1.5
+				spacing: Appearance.spacing.normal
+
+				TextField {
+					id: search
+
+					Layout.fillWidth: true
+					Layout.preferredHeight: 60
+					placeholderText: " Search"
+
+					background: Rectangle {
+						radius: Appearance.rounding.small
+						color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.7)
+						border.color: Appearance.colors.on_background
+						border.width: 2
+					}
+
+					onTextChanged: {
+						root.currentIndex = 0;
+					}
+
+					Keys.onPressed: function (event) {
+						switch (event.key) {
+						case Qt.Key_Return:
+						case Qt.Key_Tab:
+						case Qt.Key_Enter:
+							listView.focus = true;
+							event.accepted = true;
+							break;
+						case Qt.Key_Escape:
+							launcher.isLauncherOpen = false;
+							event.accepted = true;
+							break;
+						case Qt.Key_Down:
+							listView.focus = true;
+							event.accepted = true;
+							break;
+						}
+					}
+				}
 
 				ListView {
 					id: listView
-					width: parent.width
-					height: parent.height - search.height - parent.spacing
-					model: Fuzzy.fuzzySearch(DesktopEntries.applications.values, search.text, "name")
-					keyNavigationWraps: true
+
+					Layout.fillWidth: true
+					Layout.fillHeight: true
+					Layout.preferredHeight: 400
+
+					model: ScriptModel {
+						values: Fuzzy.fuzzySearch(DesktopEntries.applications.values, search.text, "name")
+					}
+
+					keyNavigationWraps: false
 					currentIndex: root.currentIndex
 					maximumFlickVelocity: 3000
 					orientation: Qt.Vertical
+					clip: true
 
 					boundsBehavior: Flickable.DragAndOvershootBounds
 					flickDeceleration: 1500
@@ -89,6 +140,7 @@ Scope {
 
 					delegate: MouseArea {
 						id: entryMouseArea
+
 						required property DesktopEntry modelData
 						required property int index
 
@@ -108,11 +160,6 @@ Scope {
 
 						onEntered: {
 							root.currentIndex = index;
-							itemScale = 1.02;
-						}
-
-						onExited: {
-							itemScale = 1.0;
 						}
 
 						onClicked: {
@@ -130,21 +177,27 @@ Scope {
 								root.launch(modelData);
 								launcher.isLauncherOpen = false;
 								break;
+							case Qt.Key_Up:
+								if (index === 0) {
+									search.focus = true;
+								}
+								break;
 							}
 						}
 
 						Rectangle {
 							anchors.fill: parent
 							anchors.margins: 2
+
 							transform: Scale {
 								xScale: entryMouseArea.itemScale
 								yScale: entryMouseArea.itemScale
-								origin.x: listView.width / 2
-								origin.y: listView.height / 2
+								origin.x: width / 2
+								origin.y: height / 2
 							}
 
-							readonly property bool selected: entryMouseArea.containsMouse || entryMouseArea.index === root.currentIndex
-							color: selected ? Appearance.colors.withAlpha(Appearance.colors.on_background, 0.6) : "transparent"
+							readonly property bool selected: entryMouseArea.containsMouse || (listView.currentIndex === entryMouseArea.index && listView.activeFocus)
+							color: selected ? Appearance.colors.withAlpha(Appearance.colors.on_surface, 0.1) : "transparent"
 							radius: Appearance.rounding.normal
 
 							Behavior on color {
@@ -161,8 +214,8 @@ Scope {
 
 								IconImage {
 									Layout.alignment: Qt.AlignVCenter
-									Layout.preferredWidth: 42
-									Layout.preferredHeight: 42
+									Layout.preferredWidth: 40
+									Layout.preferredHeight: 40
 									asynchronous: true
 									source: Quickshell.iconPath(entryMouseArea.modelData.icon) || ""
 
@@ -182,6 +235,7 @@ Scope {
 									Layout.fillWidth: true
 									Layout.alignment: Qt.AlignVCenter
 									text: entryMouseArea.modelData.name || ""
+									font.pixelSize: Appearance.fonts.normal
 									color: Appearance.colors.on_background
 									elide: Text.ElideRight
 
@@ -206,7 +260,7 @@ Scope {
 					highlight: Rectangle {
 						color: Appearance.colors.primary
 						radius: Appearance.rounding.normal
-						opacity: 0.4
+						opacity: 0.06
 
 						scale: 0.95
 						Behavior on scale {
@@ -220,157 +274,17 @@ Scope {
 							scale = 1.0;
 						}
 					}
-
-					rebound: Transition {
-						NumberAnimation {
-							property: "x,y"
-							duration: Appearance.animations.durations.normal
-							easing.bezierCurve: Appearance.animations.curves.standard
-						}
-					}
-
-					add: Transition {
-						id: addTransition
-						enabled: true
-
-						SequentialAnimation {
-							PauseAnimation {
-								duration: Math.min(50 * (ViewTransition.index || 0), 300)
-							}
-
-							ParallelAnimation {
-								NumberAnimation {
-									property: "opacity"
-									from: 0
-									to: 1
-									duration: Appearance.animations.durations.normal
-									easing.bezierCurve: Appearance.animations.curves.standardDecel
-								}
-								NumberAnimation {
-									property: "scale"
-									from: 0.8
-									to: 1
-									duration: Appearance.animations.durations.normal
-									easing.bezierCurve: Appearance.animations.curves.standardDecel
-								}
-								NumberAnimation {
-									property: "y"
-									from: ViewTransition.destination.y + 20
-									to: ViewTransition.destination.y
-									duration: Appearance.animations.durations.normal
-									easing.bezierCurve: Appearance.animations.curves.standardDecel
-								}
-							}
-						}
-					}
-
-					remove: Transition {
-						enabled: true
-
-						ParallelAnimation {
-							NumberAnimation {
-								property: "opacity"
-								from: 1
-								to: 0
-								duration: Appearance.animations.durations.small
-								easing.bezierCurve: Appearance.animations.curves.standardAccel
-							}
-							NumberAnimation {
-								property: "scale"
-								from: 1
-								to: 0.8
-								duration: Appearance.animations.durations.small
-								easing.bezierCurve: Appearance.animations.curves.standardAccel
-							}
-							NumberAnimation {
-								property: "x"
-								to: -listView.width
-								duration: Appearance.animations.durations.small
-								easing.bezierCurve: Appearance.animations.curves.standardAccel
-							}
-						}
-					}
-
-					move: Transition {
-						NumberAnimation {
-							property: "y"
-							duration: Appearance.animations.durations.normal
-							easing.bezierCurve: Appearance.animations.curves.standard
-						}
-					}
-
-					addDisplaced: Transition {
-						NumberAnimation {
-							property: "y"
-							duration: Appearance.animations.durations.normal
-							easing.bezierCurve: Appearance.animations.curves.standard
-						}
-					}
-
-					removeDisplaced: Transition {
-						NumberAnimation {
-							property: "y"
-							duration: Appearance.animations.durations.normal
-							easing.bezierCurve: Appearance.animations.curves.standard
-						}
-					}
-
-					ScrollIndicator.vertical: ScrollIndicator {
-						active: listView.moving || listView.flicking
-						opacity: active ? 0.7 : 0
-
-						Behavior on opacity {
-							NumberAnimation {
-								duration: Appearance.animations.durations.small
-							}
-						}
-					}
-				}
-				TextField {
-					id: search
-
-					width: parent.width
-					implicitHeight: 50
-					placeholderText: "Search"
-					background: Rectangle {
-						radius: Appearance.rounding.small
-						color: Appearance.colors.background
-						border.color: Appearance.colors.on_background
-						border.width: 2
-					}
-
-					onTextChanged: {
-						root.currentIndex = 0;
-					}
-
-					Keys.onPressed: function (event) {
-						switch (event.key) {
-						case Qt.Key_Return:
-						case Qt.Key_Tab:
-						case Qt.Key_Enter:
-							listView.focus = true;
-							event.accepted = true;
-							break;
-						case Qt.Key_Escape:
-							launcher.isLauncherOpen = false;
-							event.accepted = true;
-							break;
-						}
-					}
 				}
 			}
 		}
 	}
-
 	IpcHandler {
 		target: "launcher"
 
 		function toggle(): void {
 			launcher.isLauncherOpen = !launcher.isLauncherOpen;
-			if (launcher.isLauncherOpen) {
+			if (launcher.isLauncherOpen)
 				search.focus = true;
-				root.currentIndex = 0;
-			}
 		}
 	}
 }
