@@ -4,8 +4,6 @@ import qs.Data
 Text {
 	id: root
 
-	property real targetFill: 0
-	property real fill: 0
 	property int grad: 0
 	required property string icon
 
@@ -14,28 +12,20 @@ Text {
 	font.family: Appearance.fonts.family_Material
 	font.hintingPreference: Font.PreferFullHinting
 	font.variableAxes: {
-		"FILL": Math.round(fill * 10) / 10,
 		"opsz": root.fontInfo.pixelSize,
 		"wght": root.fontInfo.weight
 	}
 
+	color: "transparent"
+
 	renderType: Text.NativeRendering
 	text: root.icon
 
-	Behavior on fill {
-		NumberAnimation {
+	Behavior on color {
+		ColorAnimation {
 			duration: Appearance.animations.durations.small
 			easing.type: Easing.BezierSpline
 			easing.bezierCurve: Appearance.animations.curves.standard
-
-			onRunningChanged: {
-				if (running) {
-					root.layer.enabled = true;
-					root.layer.smooth = false;
-				} else {
-					root.layer.enabled = false;
-				}
-			}
 		}
 	}
 }
