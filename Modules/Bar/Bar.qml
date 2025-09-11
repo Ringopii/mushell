@@ -19,7 +19,7 @@ Scope {
 				top: true
 			}
 			color: "transparent"
-			WlrLayershell.namespace: "shell"
+			WlrLayershell.namespace: "shell-bar"
 			screen: modelData
 			exclusionMode: ExclusionMode.Auto
 			focusable: false
@@ -33,7 +33,7 @@ Scope {
 			Rectangle {
 				id: base
 
-				color: Appearance.colors.background
+				color: Appearance.colors.withAlpha(Appearance.colors.background, 0.7)
 				radius: Appearance.rounding.large
 				anchors.fill: parent
 				anchors.margins: 4

@@ -14,7 +14,8 @@ Rectangle {
 	property int padding: 20
 
 	Layout.fillHeight: true
-	color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	color: "transparent"
 	implicitWidth: container.width + padding
 	radius: 5
 

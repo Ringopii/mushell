@@ -12,7 +12,8 @@ Rectangle {
 	Layout.fillHeight: true
 	Layout.maximumWidth: maximumWidth + padding
 	clip: true
-	color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	color: "transparent"
 	implicitWidth: windowNameText.contentWidth + padding
 	radius: 5
 

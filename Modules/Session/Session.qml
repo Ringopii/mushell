@@ -1,5 +1,7 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
-import Quickshell.Widgets
+import Quickshell.Wayland
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
@@ -14,13 +16,14 @@ Scope {
 	property bool isSessionOpen: false
 	PanelWindow {
 		id: sessionWindow
-		visible: isSessionOpen
+		visible: session.isSessionOpen
 		focusable: true
 		anchors.right: true
 		margins.right: 10
 		exclusiveZone: 0
 		implicitWidth: 80
 		implicitHeight: 550
+		WlrLayershell.namespace: "shell"
 		color: "transparent"
 
 		Item {
@@ -29,7 +32,7 @@ Scope {
 			Rectangle {
 				anchors.fill: parent
 				radius: Appearance.rounding.normal
-				color: Appearance.colors.background
+				color: Appearance.colors.withAlpha(Appearance.colors.background, 0.7)
 
 				ColumnLayout {
 					anchors.fill: parent
@@ -76,69 +79,74 @@ Scope {
 							}
 						]
 
-						delegate: MatIcon {
-							id: iconDelegate
+						delegate: Rectangle {
+							id: rectDelegate
+
 							required property var modelData
 							required property int index
+							property bool isHighlighted: mouseArea.containsMouse || (iconDelegate.focus && rectDelegate.index === session.currentIndex)
 
 							Layout.alignment: Qt.AlignHCenter
 							Layout.preferredWidth: 60
-							Layout.preferredHeight: 60
+							Layout.preferredHeight: 70
 
-							color: Appearance.colors.primary
-							fill: mouseArea.containsMouse || iconDelegate.focus
-							font.pointSize: Appearance.fonts.large * 3
-							icon: modelData.icon
+							radius: Appearance.rounding.normal
+							color: isHighlighted ? Appearance.colors.withAlpha(Appearance.colors.secondary, 0.2) : "transparent"
 
-							focus: index === session.currentIndex
-
-							Keys.onEnterPressed: modelData.action()
-							Keys.onReturnPressed: modelData.action()
-							Keys.onSpacePressed: modelData.action()
-
-							Keys.onUpPressed: {
-								if (session.currentIndex > 0) 
-									session.currentIndex--;
-								
-							}
-							Keys.onDownPressed: {
-								if (session.currentIndex < 3) 
-									session.currentIndex++;
-								
-							}
-
-							Keys.onEscapePressed: {
-								session.isSessionOpen = !session.isSessionOpen;
-							}
-
-							scale: mouseArea.pressed ? 0.95 : 1.0
-
-							Behavior on scale {
-								NumberAnimation {
-									duration: 100
-									easing.type: Easing.OutQuad
+							Behavior on color {
+								ColorAnimation {
+									duration: Appearance.animations.durations.normal
+									easing.type: Easing.BezierSpline
+									easing.bezierCurve: Appearance.animations.curves.standard
 								}
 							}
 
-							MouseArea {
-								id: mouseArea
-								anchors.fill: parent
-								cursorShape: Qt.PointingHandCursor
-								hoverEnabled: true
+							MatIcon {
+								id: iconDelegate
 
-								onClicked: {
-									parent.focus = true;
-									parent.modelData.action();
+								color: Appearance.colors.primary
+								font.family: "Material Symbols Rounded"
+								font.pixelSize: Appearance.fonts.large * 4
+								icon: rectDelegate.modelData.icon
+
+								focus: rectDelegate.index === session.currentIndex
+
+								Keys.onEnterPressed: rectDelegate.modelData.action()
+								Keys.onReturnPressed: rectDelegate.modelData.action()
+								Keys.onUpPressed: session.currentIndex > 0 ? session.currentIndex-- : ""
+								Keys.onDownPressed: session.currentIndex < 3 ? session.currentIndex++ : ""
+								Keys.onEscapePressed: session.isSessionOpen = !session.isSessionOpen
+
+								scale: mouseArea.pressed ? 0.95 : 1.0
+
+								Behavior on scale {
+									NumberAnimation {
+										duration: Appearance.animations.durations.normal
+										easing.type: Easing.BezierSpline
+										easing.bezierCurve: Appearance.animations.curves.standard
+									}
 								}
 
-								onEntered: parent.focus = true
+								MouseArea {
+									id: mouseArea
+
+									anchors.fill: parent
+									cursorShape: Qt.PointingHandCursor
+									hoverEnabled: true
+
+									onClicked: {
+										parent.focus = true;
+										rectDelegate.modelData.action();
+									}
+
+									onEntered: parent.focus = true
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-
 	}
 
 	IpcHandler {

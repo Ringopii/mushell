@@ -11,7 +11,8 @@ import qs.Helpers
 Rectangle {
 	Layout.fillHeight: true
 	clip: true
-	color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	color: "transparent"
+	// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
 	implicitWidth: container.width
 	radius: 5
 
@@ -256,8 +257,7 @@ Rectangle {
 						id: fgText
 						anchors.centerIn: parent
 						color: bgCon.visible ? Appearance.colors.on_primary : Appearance.colors.on_background
-						fill: bgCon.visible || clickArea.containsMouse
-						font.pixelSize: Appearance.fonts.small * 1.7
+						font.pixelSize: Appearance.fonts.medium * 1.4
 						icon: delegateRoot.modelData.icon
 
 						Behavior on color {
@@ -268,17 +268,6 @@ Rectangle {
 								easing.bezierCurve: Appearance.animations.curves.standard
 							}
 						}
-
-						Behavior on fill {
-							enabled: !delegateRoot.isAnimating
-							NumberAnimation {
-								duration: Appearance.animations.durations.expressiveEffects
-								easing.type: Easing.BezierSpline
-								easing.bezierCurve: Appearance.animations.curves.expressiveEffects
-							}
-						}
-
-						layer.enabled: bgCon.visible
 					}
 				}
 			}
