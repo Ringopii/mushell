@@ -17,7 +17,7 @@ Singleton {
 
 	FileView {
 		id: meminfo
-		
+
 		path: "/proc/meminfo"
 		onLoaded: {
 			const data = text();
@@ -35,47 +35,47 @@ Singleton {
 		id: diskinfo
 
 		command: ["sh", "-c", "df | grep '^/dev/' | awk '{print $1, $3, $4}'"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                const deviceMap = new Map();
+		stdout: StdioCollector {
+			onStreamFinished: {
+				const deviceMap = new Map();
 
-                for (const line of text.trim().split("\n")) {
-                    if (line.trim() === "")
-                        continue;
+				for (const line of text.trim().split("\n")) {
+					if (line.trim() === "")
+						continue;
 
-                    const parts = line.trim().split(/\s+/);
-                    if (parts.length >= 3) {
-                        const device = parts[0];
-                        const used = parseInt(parts[1], 10) || 0;
-                        const avail = parseInt(parts[2], 10) || 0;
+					const parts = line.trim().split(/\s+/);
+					if (parts.length >= 3) {
+						const device = parts[0];
+						const used = parseInt(parts[1], 10) || 0;
+						const avail = parseInt(parts[2], 10) || 0;
 
-                        // Only keep the entry with the largest total space for each device
-                        if (!deviceMap.has(device) || (used + avail) > (deviceMap.get(device).used + deviceMap.get(device).avail)) {
-                            deviceMap.set(device, {
-                                used: used,
-                                avail: avail
-                            });
-                        }
-                    }
-                }
+						// Only keep the entry with the largest total space for each device
+						if (!deviceMap.has(device) || (used + avail) > (deviceMap.get(device).used + deviceMap.get(device).avail)) {
+							deviceMap.set(device, {
+								used: used,
+								avail: avail
+							});
+						}
+					}
+				}
 
-                let totalUsed = 0;
-                let totalAvail = 0;
+				let totalUsed = 0;
+				let totalAvail = 0;
 
-                for (const [device, stats] of deviceMap) {
-                    totalUsed += stats.used;
-                    totalAvail += stats.avail;
-                }
+				for (const [device, stats] of deviceMap) {
+					totalUsed += stats.used;
+					totalAvail += stats.avail;
+				}
 
-                root.diskUsed = totalUsed;
-                root.diskTotal = totalUsed + totalAvail;
-            }
-        }
+				root.diskUsed = totalUsed;
+				root.diskTotal = totalUsed + totalAvail;
+			}
+		}
 	}
 
 	FileView {
 		id: stat
-		
+
 		path: "/proc/stat"
 		onLoaded: {
 			const data = text();

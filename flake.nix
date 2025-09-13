@@ -51,7 +51,7 @@
       default = pkgs.mkShell {
         packages = [
           self.packages.${system}.default
-					pkgs.kdePackages.qtdeclarative
+          pkgs.kdePackages.qtdeclarative
         ];
 
         QML2_IMPORT_PATH = qmlPath pkgs;
