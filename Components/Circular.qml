@@ -17,8 +17,8 @@ Rectangle {
 	TextMetrics {
 		id: textMetrics
 		text: root.text
-		font.pixelSize: textStatus.font.pixelSize
-		font.bold: textStatus.font.bold
+		font.pixelSize: 16
+		font.bold: true
 	}
 
 	width: Math.max(minSize, Math.max(textMetrics.width, textMetrics.height) + textPadding * 4)
@@ -54,7 +54,8 @@ Rectangle {
 
 	Timer {
 		id: updateTimer
-		interval: 50
+
+		interval: 500
 		repeat: true
 		running: true
 		onTriggered: {
@@ -64,6 +65,7 @@ Rectangle {
 
 	StyledText {
 		id: textStatus
+
 		anchors.centerIn: parent
 		text: root.text
 		font.pixelSize: Math.max(12, Math.min(24, root.width / 6))
