@@ -66,10 +66,9 @@ Rectangle {
 						active: rectDelegate.hasImage
 						asynchronous: true
 
-						anchors.left: parent.left
-						anchors.top: parent.top
-						width: 80
-						height: 80
+						Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+						Layout.preferredWidth: 80
+						Layout.preferredHeight: 80
 						visible: rectDelegate.hasImage || rectDelegate.hasAppIcon
 
 						sourceComponent: ClippingRectangle {

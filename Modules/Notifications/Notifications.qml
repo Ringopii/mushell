@@ -28,7 +28,7 @@ Loader {
 		color: "transparent"
 
 		implicitWidth: 400
-		height: Math.min(300, notifListView.contentHeight + 20)
+		implicitHeight: Math.min(300, notifListView.contentHeight + 20)
 		visible: {
 			if (!Notifs.notifications.isDnDDisabled && Notifs.notifications.popupNotifications.length > 0)
 				return true;
