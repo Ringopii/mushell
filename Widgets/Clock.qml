@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.Data
+import qs.Components
 import qs.Helpers
 
 Rectangle {
@@ -16,16 +17,16 @@ Rectangle {
 	Dots {
 		id: timeContainer
 
-		icon {
+		MatIcon {
 			id: icon
 
 			color: Appearance.colors.on_background
 			font.bold: true
-			font.pixelSize: Appearance.fonts.medium * 1.4
-			text: "schedule"
+			font.pixelSize: Appearance.fonts.large * 1.2
+			icon: "schedule"
 		}
 
-		text {
+		StyledText {
 			id: text
 
 			color: Appearance.colors.on_background

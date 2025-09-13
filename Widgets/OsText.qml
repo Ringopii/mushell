@@ -16,11 +16,12 @@ Rectangle {
 	Dots {
 		id: container
 
-		icon {
+		MatIcon {
+			Layout.alignment: Qt.AlignLeft | Qt.AlignHCenter
 			color: Appearance.colors.tertiary
 			font.family: Appearance.fonts.family_Mono
 			font.pixelSize: Appearance.fonts.large * 1.7
-			text: "󱄅"
+			icon: "󱄅"
 		}
 	}
 }

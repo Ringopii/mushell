@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.Data
+import qs.Components
 
 RowLayout {
 	id: root
@@ -18,7 +19,7 @@ RowLayout {
 		Layout.fillHeight: true
 		implicitWidth: icon.width
 
-		Text {
+		StyledText {
 			id: icon
 
 			anchors.centerIn: parent
@@ -33,7 +34,7 @@ RowLayout {
 		Layout.fillHeight: true
 		implicitWidth: text.width
 
-		Text {
+		StyledText {
 			id: text
 
 			anchors.centerIn: parent

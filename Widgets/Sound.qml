@@ -4,6 +4,7 @@ import Quickshell.Services.Pipewire
 
 import qs.Data
 import qs.Helpers
+import qs.Components
 import qs.Windows
 
 Rectangle {
@@ -36,17 +37,20 @@ Rectangle {
 
 		spacing: 5
 
-		icon {
+		MatIcon {
 			color: Appearance.colors.on_background
-			text: root.icon
+			icon: root.icon
+			Layout.alignment: Qt.AlignVCenter 
 			font.pixelSize: Appearance.fonts.large * 1.2
 		}
 
-		text {
+		StyledText {
 			color: Appearance.colors.on_background
-			text: (node.audio.volume * 100).toFixed(0) + "%"
+			text: (root.node.audio.volume * 100).toFixed(0) + "%"
+			Layout.alignment: Qt.AlignVCenter 
 			font.pixelSize: Appearance.fonts.medium
 		}
+
 	}
 
 	Mixer {

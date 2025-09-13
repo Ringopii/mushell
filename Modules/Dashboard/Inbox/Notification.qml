@@ -10,6 +10,7 @@ import QtQuick.Effects
 
 import qs.Data
 import qs.Helpers
+import qs.Components
 
 Rectangle {
 	Layout.fillWidth: true
@@ -151,7 +152,7 @@ Rectangle {
 						RowLayout {
 							Layout.fillWidth: true
 
-							Text {
+							StyledText {
 								id: appName
 								Layout.fillWidth: true
 								text: rectDelegate.modelData.appName
@@ -179,7 +180,7 @@ Rectangle {
 							}
 						}
 
-						Text {
+						StyledText {
 							id: summary
 
 							Layout.fillWidth: true
@@ -191,7 +192,7 @@ Rectangle {
 							wrapMode: Text.WordWrap
 						}
 
-						Text {
+						StyledText {
 							id: body
 
 							Layout.fillWidth: true
@@ -294,7 +295,7 @@ Rectangle {
 										}
 									}
 
-									Text {
+									StyledText {
 										id: actionText
 										anchors.centerIn: parent
 										text: actionButton.modelData.text

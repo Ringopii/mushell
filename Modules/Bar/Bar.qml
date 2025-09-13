@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -6,11 +8,15 @@ import Quickshell.Wayland
 import qs.Data
 
 Scope {
+	id: root
+
+	property bool isBarOpen: false
+
 	Variants {
-		id: bar
 		model: Quickshell.screens
 		delegate: PanelWindow {
-			id: root
+			id: bar
+
 			required property ShellScreen modelData
 
 			anchors {
@@ -19,7 +25,7 @@ Scope {
 				top: true
 			}
 			color: "transparent"
-			WlrLayershell.namespace: "shell-bar"
+			WlrLayershell.namespace: "shell:bar"
 			screen: modelData
 			exclusionMode: ExclusionMode.Auto
 			focusable: false
@@ -29,6 +35,7 @@ Scope {
 			margins.top: 2
 			margins.left: 2
 			margins.right: 2
+			visible: root.isBarOpen
 
 			Rectangle {
 				id: base
@@ -42,22 +49,36 @@ Scope {
 					width: parent.width
 					anchors.fill: parent
 
-					Left {
+					Loader {
 						Layout.fillHeight: true
 						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+						active: root.isBarOpen
+						asynchronous: true
+
+						sourceComponent: Left {}
 					}
 
-					Middle {
+					Loader {
 						Layout.fillHeight: true
 						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignCenter
+						active: root.isBarOpen
+						asynchronous: true
+
+						sourceComponent: Middle {}
 					}
 
-					Right {
+					Loader {
 						Layout.fillHeight: true
 						Layout.preferredWidth: parent.width / 6
 						Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+						active: root.isBarOpen
+						asynchronous: true
+
+						sourceComponent: Right {}
 					}
 				}
 			}
@@ -67,11 +88,7 @@ Scope {
 	IpcHandler {
 		target: "layerShell"
 		function toggle(): void {
-			if (bar.model == "") {
-				bar.model = Quickshell.screens;
-			} else {
-				bar.model = "";
-			}
+			root.isBarOpen = !root.isBarOpen;
 		}
 	}
 }

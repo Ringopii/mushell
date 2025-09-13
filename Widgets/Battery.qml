@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Services.UPower
 
 import qs.Data
+import qs.Components
 import qs.Helpers
 
 Rectangle {
@@ -29,16 +30,18 @@ Rectangle {
 
 		spacing: Appearance.spacing.small
 
-		icon {
+		MatIcon {
 			color: Appearance.colors.tertiary
 			font.family: Appearance.fonts.family_Mono
-			font.pixelSize: Appearance.fonts.medium * 1.4
-			text: (root.batCharging) ? root.chargeIcon : root.batIcon
+			font.pixelSize: Appearance.fonts.large * 1.2
+			Layout.alignment: Qt.AlignVCenter
+			icon: (root.batCharging) ? root.chargeIcon : root.batIcon
 		}
 
-		text {
+		StyledText {
 			color: Appearance.colors.tertiary
 			font.pixelSize: Appearance.fonts.medium
+			Layout.alignment: Qt.AlignVCenter
 			text: (UPower.displayDevice.percentage * 100).toFixed(0) + "%"
 		}
 	}

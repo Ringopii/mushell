@@ -257,7 +257,7 @@ Rectangle {
 						id: fgText
 						anchors.centerIn: parent
 						color: bgCon.visible ? Appearance.colors.on_primary : Appearance.colors.on_background
-						font.pixelSize: Appearance.fonts.medium * 1.4
+						font.pixelSize: Appearance.fonts.large * 1.2
 						icon: delegateRoot.modelData.icon
 
 						Behavior on color {

@@ -3,6 +3,7 @@ import QtQuick.Layouts
 
 import qs.Data
 import qs.Helpers
+import qs.Components
 
 Rectangle {
 	Layout.fillWidth: true
@@ -16,7 +17,7 @@ Rectangle {
 		anchors.fill: parent
 		anchors.margins: 16
 
-		Text {
+		StyledText {
 			Layout.fillWidth: true
 			text: "Notifications"
 			color: Appearance.colors.on_background

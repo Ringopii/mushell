@@ -35,24 +35,12 @@ RowLayout {
 					width: workspaceText.width
 					height: workspaceText.height
 
-					Text {
+					StyledText {
 						id: workspaceText
 						text: (index + 1).toString()
-						color: Appearance.colors.on_background
+						color: focused ? Appearance.colors.primary : Appearance.colors.on_background
 						font.pixelSize: Appearance.fonts.medium * 1.3
 						font.bold: focused
-					}
-
-					Rectangle {
-						visible: focused
-						anchors {
-							left: workspaceText.left
-							right: workspaceText.right
-							top: workspaceText.bottom
-							topMargin: -3
-						}
-						height: 2
-						color: Appearance.colors.on_background
 					}
 
 					MouseArea {

@@ -6,6 +6,7 @@ import qs.Modules.Session
 import qs.Modules.Launcher
 import qs.Modules.Notifications
 import qs.Modules.Dashboard
+import qs.Modules.BigClock
 
 import QtQuick
 import Quickshell
@@ -19,6 +20,7 @@ ShellRoot {
 	Screencapture {}
 	Notifications {}
 	Dashboard {}
+	Clock {}
 
 	Connections {
 		function onReloadCompleted() {

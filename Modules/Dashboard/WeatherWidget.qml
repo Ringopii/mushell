@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.Data
+import qs.Components
 
 Rectangle {
 	id: root
@@ -20,7 +21,7 @@ Rectangle {
 		anchors.margins: 20
 		spacing: 10
 
-		Text {
+		StyledText {
 			Layout.alignment: Qt.AlignHCenter
 			text: Weather.cityData
 
@@ -47,7 +48,7 @@ Rectangle {
 				mipmap: true
 			}
 
-			Text {
+			StyledText {
 				Layout.alignment: Qt.AlignVCenter
 				text: Weather.tempData + "°C"
 				color: Appearance.colors.primary
@@ -56,7 +57,7 @@ Rectangle {
 			}
 		}
 
-		Text {
+		StyledText {
 			Layout.alignment: Qt.AlignHCenter
 			text: Weather.weatherDescriptionData.charAt(0).toUpperCase() + Weather.weatherDescriptionData.slice(1)
 			color: Appearance.colors.on_surface_variant
@@ -83,14 +84,14 @@ Rectangle {
 					Layout.fillWidth: true
 					spacing: 5
 
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: Weather.tempMinData + "° / " + Weather.tempMaxData + "°"
 						color: Appearance.colors.on_surface
 						font.weight: Font.Bold
 						font.pixelSize: 16
 					}
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: "Min / Max"
 						color: Appearance.colors.on_surface_variant
@@ -102,14 +103,14 @@ Rectangle {
 					Layout.fillWidth: true
 					spacing: 5
 
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: Weather.humidityData + "%"
 						color: Appearance.colors.on_surface
 						font.weight: Font.Bold
 						font.pixelSize: 16
 					}
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: "Kelembapan"
 						color: Appearance.colors.on_surface_variant
@@ -121,14 +122,14 @@ Rectangle {
 					Layout.fillWidth: true
 					spacing: 5
 
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: Weather.windSpeedData + " m/s"
 						color: Appearance.colors.on_surface
 						font.weight: Font.Bold
 						font.pixelSize: 16
 					}
-					Text {
+					StyledText {
 						Layout.alignment: Qt.AlignHCenter
 						text: "Angin"
 						color: Appearance.colors.on_surface_variant

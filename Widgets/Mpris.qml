@@ -6,6 +6,7 @@ import Quickshell.Services.Mpris
 
 import qs.Data
 import qs.Helpers
+import qs.Components
 
 Rectangle {
 	id: rect
@@ -43,7 +44,7 @@ Rectangle {
 
 					property int controlsWidth: 120
 
-					onWidthChanged: mArea.contentWidth = Math.max(baseWidth, width + 20)
+					onWidthChanged: mArea.contentWidth = Math.max(rect.baseWidth, width + 20)
 
 					Behavior on width {
 						NumberAnimation {
@@ -55,24 +56,26 @@ Rectangle {
 
 					RowLayout {
 						id: mediaInfo
+
 						anchors.left: parent.left
 						anchors.verticalCenter: parent.verticalCenter
 						spacing: Appearance.spacing.small
 
 						MatIcon {
 							color: Appearance.colors.primary
-							font.pointSize: Appearance.fonts.normal * 1.2
+							font.pixelSize: Appearance.fonts.large * 1.2
 							icon: mediaContainer.player.playbackState === MprisPlaybackState.Playing ? "genres" : "play_circle"
 						}
 
-						Text {
-							font.pixelSize: Appearance.fonts.normal
+						StyledText {
+							font.pixelSize: Appearance.fonts.medium
 							text: mediaContainer.player.trackArtist > 25 ? mediaContainer.player.trackArtist.substring(0, 25 - 3) + "..." : (mediaContainer.player.trackArtist || "")
 							color: Appearance.colors.on_background
 						}
 
 						MouseArea {
 							anchors.fill: parent
+
 							cursorShape: Qt.PointingHandCursor
 							hoverEnabled: true
 							onClicked: mediaContainer.isPlayerShow = !mediaContainer.isPlayerShow
@@ -85,7 +88,7 @@ Rectangle {
 						anchors.rightMargin: 10
 						anchors.verticalCenter: parent.verticalCenter
 
-						opacity: isPlayerShow ? 1 : 0
+						opacity: mediaContainer.isPlayerShow ? 1 : 0
 						visible: opacity > 0
 
 						Behavior on opacity {
