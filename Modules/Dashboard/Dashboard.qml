@@ -29,6 +29,7 @@ Scope {
 
 	Loader {
 		id: dashboardLoader
+
 		active: root.isDashboardOpen
 		asynchronous: true
 

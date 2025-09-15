@@ -167,14 +167,12 @@ Rectangle {
 
 				MouseArea {
 					id: mouseArea
+
 					anchors.fill: parent
 					hoverEnabled: true
 					visible: dayItem.model.month === root.currentMonth
 					cursorShape: Qt.PointingHandCursor
-					onClicked: {
-						// Aksi ketika tanggal diklik
-						console.log("Selected date:", Qt.formatDate(dayItem.model.date, "yyyy-MM-dd"));
-					}
+					onClicked: {}
 				}
 
 				StyledText {
