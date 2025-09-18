@@ -25,6 +25,7 @@ Rectangle {
 		property date currentDate: new Date()
 		property int currentYear: currentDate.getFullYear()
 		property int currentMonth: currentDate.getMonth()
+		property int cellWidth: Math.floor((width - anchors.margins * 2) / 7)
 
 		RowLayout {
 			Layout.fillWidth: true
@@ -125,23 +126,38 @@ Rectangle {
 		DayOfWeekRow {
 			Layout.fillWidth: true
 			Layout.topMargin: Appearance.spacing.small
+			Layout.preferredHeight: 32
 
-			delegate: StyledText {
+			delegate: Rectangle {
+				id: daysOfWeekDelegate
+
 				required property var model
 
-				horizontalAlignment: Text.AlignHCenter
-				verticalAlignment: Text.AlignVCenter
-				text: model.shortName
-				color: Appearance.colors.on_surface_variant
-				font.pixelSize: Appearance.fonts.small * 1.2
-				font.weight: 600
+				implicitWidth: root.cellWidth
+				implicitHeight: 32
+				color: "transparent"
+
+				StyledText {
+					anchors.centerIn: parent
+					horizontalAlignment: Text.AlignHCenter
+					verticalAlignment: Text.AlignVCenter
+					text: daysOfWeekDelegate.model.shortName
+					color: Appearance.colors.on_surface_variant
+					font.pixelSize: Appearance.fonts.small * 1.2
+					font.weight: 600
+				}
 			}
 		}
 
 		MonthGrid {
+			id: monthGrid
+
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 			Layout.topMargin: Appearance.spacing.small
+
+			property int cellWidth: root.cellWidth
+			property int cellHeight: Math.floor(height / 7.2)
 
 			month: root.currentMonth
 			year: root.currentYear
@@ -150,6 +166,9 @@ Rectangle {
 				id: dayItem
 
 				required property var model
+
+				width: monthGrid.cellWidth
+				height: monthGrid.cellHeight
 
 				color: {
 					if (dayItem.model.today) {
