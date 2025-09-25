@@ -14,8 +14,8 @@ Singleton {
 	property real diskTotal
 
 	// Networking
-	property string wiredInterface
-	property string wirelessInterface
+	property string wiredInterface: "enp0s31f6"
+	property string wirelessInterface: "wlp3s0"
 
 	property var previousData: ({})
 	property var lastUpdateTime: 0
