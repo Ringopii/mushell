@@ -15,8 +15,6 @@ WlSessionLockSurface {
 	required property WlSessionLock lock
 	required property Pam pam
 
-	property bool isWallReady: false
-
 	Connections {
 		target: root.lock
 
@@ -37,13 +35,16 @@ WlSessionLockSurface {
 			anchors.fill: parent
 			captureSource: root.screen
 			visible: true
+		}
 
-			layer.enabled: true
-			layer.effect: MultiEffect {
-				blurEnabled: true
-				blurMax: 64
-				blur: 1.0
-			}
+		MultiEffect {
+			id: wallEffect
+
+			source: wallpaper
+			anchors.fill: parent
+			blurEnabled: true
+			blurMax: 64
+			blur: 1.0
 		}
 
 		ColumnLayout {
@@ -126,6 +127,14 @@ WlSessionLockSurface {
 		id: unlockSequence
 
 		ParallelAnimation {
+			OpacityAnimator {
+				target: wallEffect
+				from: 1
+				to: 0
+				easing.bezierCurve: Appearance.animations.curves.standardAccel
+				duration: Appearance.animations.durations.extraLarge
+			}
+
 			PropertyAnimation {
 				target: clockContainer
 				properties: "opacity,scale"
@@ -157,6 +166,14 @@ WlSessionLockSurface {
 		running: true
 
 		ParallelAnimation {
+			OpacityAnimator {
+				target: wallEffect
+				from: 0
+				to: 1
+				easing.bezierCurve: Appearance.animations.curves.standardDecel
+				duration: Appearance.animations.durations.extraLarge
+			}
+
 			PropertyAnimation {
 				target: clockContainer
 				properties: "opacity,scale"
@@ -188,9 +205,8 @@ WlSessionLockSurface {
 		enabled: root.pam !== null
 
 		function onShowFailureChanged() {
-			if (root.pam.showFailure) {
+			if (root.pam.showFailure)
 				errorShakeAnimation.start();
-			}
 		}
 	}
 
