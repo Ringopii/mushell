@@ -29,7 +29,7 @@ Scope {
 
 			width: 120
 			height: 250
-			color: Appearance.colors.background
+			color: Colors.colors.background
 			visible: root.isMenuOpen
 
 			ColumnLayout {
@@ -95,7 +95,7 @@ Scope {
 
 						StyledText {
 							text: delegateItem.modelData.name
-							color: Appearance.colors.on_background
+							color: Colors.colors.on_background
 							Layout.fillWidth: true
 							Layout.alignment: Qt.AlignVCenter
 						}

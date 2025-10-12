@@ -47,7 +47,7 @@ Scope {
 			WlrLayershell.namespace: "shell:dashboard"
 			visible: true
 			focusable: true
-			color: Appearance.colors.withAlpha(Appearance.colors.background, 0.2)
+			color: Colors.withAlpha(Colors.colors.background, 0.2)
 			screen: modelData
 			exclusiveZone: -1
 			implicitWidth: root.baseWidth

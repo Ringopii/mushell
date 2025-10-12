@@ -106,9 +106,9 @@ LazyLoader {
 
 				width: notifListView.width
 				height: contentLayout.implicitHeight + 16
-				color: modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.on_error : Appearance.colors.surface
+				color: modelData.urgency === NotificationUrgency.Critical ? Colors.colors.on_error : Colors.colors.surface
 				radius: 8
-				border.color: modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.error : Appearance.colors.outline
+				border.color: modelData.urgency === NotificationUrgency.Critical ? Colors.colors.error : Colors.colors.outline
 				border.width: modelData.urgency === NotificationUrgency.Critical ? 3 : 1
 
 				scale: delegateMouseNotif.containsMouse ? 1.02 : 1.0
@@ -192,7 +192,7 @@ LazyLoader {
 								width: 65
 								height: 65
 								radius: Appearance.rounding.full
-								color: delegateNotif.modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.error : delegateNotif.modelData.urgency === NotificationUrgency.Low ? Appearance.colors.surface_container_highest : Appearance.colors.secondary_container
+								color: delegateNotif.modelData.urgency === NotificationUrgency.Critical ? Colors.colors.error : delegateNotif.modelData.urgency === NotificationUrgency.Low ? Colors.colors.surface_container_highest : Colors.colors.secondary_container
 
 								Loader {
 									id: icon
@@ -216,7 +216,7 @@ LazyLoader {
 									anchors.verticalCenterOffset: Appearance.fonts.large * 0.02
 									sourceComponent: MatIcon {
 										text: "release_alert"
-										color: delegateNotif.modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.on_error : delegateNotif.modelData.urgency === NotificationUrgency.Low ? Appearance.colors.on_surface : Appearance.colors.on_secondary_container
+										color: delegateNotif.modelData.urgency === NotificationUrgency.Critical ? Colors.colors.on_error : delegateNotif.modelData.urgency === NotificationUrgency.Low ? Colors.colors.on_surface : Colors.colors.on_secondary_container
 										font.pointSize: Appearance.fonts.large
 									}
 								}
@@ -240,7 +240,7 @@ LazyLoader {
 								height: 28
 								radius: width / 2
 								color: "white"
-								border.color: Appearance.colors.surface
+								border.color: Colors.colors.surface
 								border.width: 2
 
 								ClippingRectangle {
@@ -284,7 +284,7 @@ LazyLoader {
 								Layout.fillWidth: true
 								text: delegateNotif.modelData.appName
 								font.pixelSize: Appearance.fonts.small * 0.9
-								color: Appearance.colors.on_background
+								color: Colors.colors.on_background
 								elide: Text.ElideRight
 							}
 
@@ -292,7 +292,7 @@ LazyLoader {
 								Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 								icon: "close"
 								font.pixelSize: Appearance.fonts.normal * 1.7
-								color: mArea.containsMouse ? Appearance.colors.withAlpha(Appearance.colors.error, 0.4) : Appearance.colors.error
+								color: mArea.containsMouse ? Colors.withAlpha(Colors.dark.error, 0.4) : Colors.colors.error
 
 								MouseArea {
 									id: mArea
@@ -316,7 +316,7 @@ LazyLoader {
 							Layout.fillWidth: true
 							text: delegateNotif.modelData.summary
 							font.pixelSize: Appearance.fonts.normal
-							color: Appearance.colors.on_background
+							color: Colors.colors.on_background
 							font.bold: true
 							elide: Text.ElideRight
 							wrapMode: Text.WordWrap
@@ -328,7 +328,7 @@ LazyLoader {
 							Layout.fillWidth: true
 							text: delegateNotif.modelData.body || ""
 							font.pixelSize: Appearance.fonts.small * 1.2
-							color: Appearance.colors.on_background
+							color: Colors.colors.on_background
 							textFormat: Text.MarkdownText
 							maximumLineCount: 4
 							Layout.preferredWidth: parent.width
@@ -353,9 +353,9 @@ LazyLoader {
 
 									required property NotificationAction modelData
 
-									color: actionMouse.pressed ? Appearance.colors.primary_container : actionMouse.containsMouse ? Appearance.colors.surface_container_highest : Appearance.colors.surface_container_high
+									color: actionMouse.pressed ? Colors.colors.primary_container : actionMouse.containsMouse ? Colors.colors.surface_container_highest : Colors.colors.surface_container_high
 
-									border.color: actionMouse.containsMouse ? Appearance.colors.primary : Appearance.colors.outline
+									border.color: actionMouse.containsMouse ? Colors.colors.primary : Colors.colors.outline
 									border.width: actionMouse.containsMouse ? 2 : 1
 									radius: 6
 
@@ -363,7 +363,7 @@ LazyLoader {
 										anchors.fill: parent
 										anchors.topMargin: 1
 										color: "transparent"
-										border.color: Appearance.colors.withAlpha(Appearance.colors.background, 0.01)
+										border.color: Colors.withAlpha(Colors.dark.background, 0.01)
 										border.width: actionMouse.pressed ? 0 : 1
 										radius: parent.radius
 										visible: !actionMouse.pressed
@@ -390,7 +390,7 @@ LazyLoader {
 											width: 0
 											height: 0
 											radius: width / 2
-											color: Qt.rgba(Appearance.colors.primary.r, Appearance.colors.primary.g, Appearance.colors.primary.b, 0.3)
+											color: Qt.rgba(Colors.colors.primary.r, Colors.colors.primary.g, Colors.colors.primary.b, 0.3)
 											visible: false
 
 											SequentialAnimation {
@@ -440,7 +440,7 @@ LazyLoader {
 										text: actionButton.modelData.text
 										font.pixelSize: Appearance.fonts.small * 1.1
 										font.weight: actionMouse.containsMouse ? Font.Medium : Font.Normal
-										color: actionMouse.containsMouse ? Appearance.colors.on_primary_container : Appearance.colors.on_surface
+										color: actionMouse.containsMouse ? Colors.colors.on_primary_container : Colors.colors.on_surface
 										elide: Text.ElideRight
 									}
 

@@ -37,7 +37,7 @@ Rectangle {
 
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-			ctx.strokeStyle = Appearance.colors.on_primary;
+			ctx.strokeStyle = Colors.colors.on_primary;
 			ctx.lineWidth = 8;
 			ctx.stroke();
 
@@ -45,7 +45,7 @@ Rectangle {
 			var startAngle = -Math.PI / 2;
 			var endAngle = startAngle + (root.value / 100) * 2 * Math.PI;
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-			ctx.strokeStyle = root.value > 80 ? Appearance.colors.on_error : root.value > 60 ? Appearance.colors.tertiary : Appearance.colors.primary;
+			ctx.strokeStyle = root.value > 80 ? Colors.colors.on_error : root.value > 60 ? Colors.colors.tertiary : Colors.colors.primary;
 			ctx.lineWidth = 8;
 			ctx.lineCap = "round";
 			ctx.stroke();
@@ -70,7 +70,7 @@ Rectangle {
 		text: root.text
 		font.pixelSize: Math.max(12, Math.min(24, root.width / 6))
 		font.bold: true
-		color: Appearance.colors.on_surface
+		color: Colors.colors.on_surface
 		horizontalAlignment: Text.AlignHCenter
 		verticalAlignment: Text.AlignVCenter
 		wrapMode: Text.WordWrap

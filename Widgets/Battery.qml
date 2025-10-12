@@ -46,7 +46,7 @@ Rectangle {
 	property int chargeIconIndex: 0
 
 	Layout.fillHeight: true
-	// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	// color: Colors.colors.withAlpha(Colors.colors.background, 0.79)
 	color: "transparent"
 	implicitWidth: container.width
 	radius: Appearance.rounding.small
@@ -57,14 +57,14 @@ Rectangle {
 		spacing: Appearance.spacing.small
 
 		MatIcon {
-			color: Appearance.colors.on_background
+			color: Colors.colors.on_background
 			font.pixelSize: Appearance.fonts.large * 1.2
 			Layout.alignment: Qt.AlignVCenter
 			icon: (root.batCharging) ? root.chargeIcon : root.batIcon
 		}
 
 		StyledText {
-			color: Appearance.colors.on_background
+			color: Colors.colors.on_background
 			font.pixelSize: Appearance.fonts.medium
 			Layout.alignment: Qt.AlignVCenter
 			text: (UPower.displayDevice.percentage * 100).toFixed(0) + "%"

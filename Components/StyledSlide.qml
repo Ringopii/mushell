@@ -33,7 +33,7 @@ Slider {
 			height: root.sliderOrientation === Qt.Horizontal ? parent.height : parent.width
 			x: root.sliderOrientation === Qt.Horizontal ? 0 : (parent.width - width) / 2
 			y: root.sliderOrientation === Qt.Horizontal ? (parent.height - height) / 2 : 0
-			color: Appearance.colors.withAlpha(Appearance.colors.primary, 0.1)
+			color: Colors.withAlpha(Colors.colors.primary, 0.1)
 			radius: Appearance.rounding.small
 		}
 
@@ -44,7 +44,7 @@ Slider {
 			height: root.sliderOrientation === Qt.Horizontal ? unprogressBackground.height : parent.height * root.visualPosition
 			x: root.sliderOrientation === Qt.Horizontal ? 0 : (parent.width - width) / 2
 			y: root.sliderOrientation === Qt.Horizontal ? (parent.height - height) / 2 : parent.height - height
-			color: Appearance.colors.withAlpha(Appearance.colors.primary, 0.8)
+			color: Colors.withAlpha(Colors.colors.primary, 0.8)
 			radius: Appearance.rounding.small
 		}
 	}
@@ -57,14 +57,14 @@ Slider {
 		implicitWidth: root.handleWidth
 		implicitHeight: root.handleHeight
 		radius: width / 2
-		color: root.pressed ? Appearance.colors.primary : Appearance.colors.on_surface
+		color: root.pressed ? Colors.colors.primary : Colors.colors.on_surface
 
 		Rectangle {
 			anchors.centerIn: parent
 			width: root.pressed ? 28 : (root.hovered ? 24 : 0)
 			height: width
 			radius: width / 2
-			color: Appearance.colors.withAlpha(Appearance.colors.primary, 0.12)
+			color: Colors.withAlpha(Colors.colors.primary, 0.1)
 			visible: root.pressed || root.hovered
 
 			Behavior on width {

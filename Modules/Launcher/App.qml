@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -12,11 +13,7 @@ import qs.Data
 import qs.Components
 import qs.Helpers
 
-Loader {
-	active: root.isLauncherOpen
-	asynchronous: true
-
-	sourceComponent: Scope {
+Scope {
 	id: root
 
 	property int currentIndex: 0
@@ -53,17 +50,19 @@ Loader {
 
 			WlrLayershell.namespace: "shell:app"
 
+			property HyprlandMonitor monitor: Hyprland.monitorFor(screen)
+			property int monitorWidth: monitor.width / monitor.scale
+			property int monitorHeight: monitor.height / monitor.scale
+
 			visible: root.isLauncherOpen
 			focusable: true
 			color: "transparent"
 			screen: modelData
 			exclusiveZone: 0
-			implicitWidth: 300
-			implicitHeight: 600
-			margins.left: 500
-			margins.right: 500
-			margins.top: 50
-			margins.bottom: 50
+			implicitWidth: monitorWidth * 0.3
+			implicitHeight: monitorHeight * 0.5
+			margins.left: monitorWidth * 0.3
+			margins.right: margins.left
 
 			Rectangle {
 				id: rectLauncher
@@ -71,8 +70,8 @@ Loader {
 				anchors.fill: parent
 
 				radius: Appearance.rounding.large
-				color: Appearance.colors.background
-				border.color: Appearance.colors.outline
+				color: Colors.colors.background
+				border.color: Colors.colors.outline
 				border.width: 2
 
 				ColumnLayout {
@@ -89,13 +88,13 @@ Loader {
 						font.family: Appearance.fonts.family_Sans
 						focus: true
 						font.pixelSize: Appearance.fonts.large * 1.2
-						color: Appearance.colors.on_surface
-						placeholderTextColor: Appearance.colors.on_surface_variant
+						color: Colors.colors.on_surface
+						placeholderTextColor: Colors.colors.on_surface_variant
 
 						background: Rectangle {
 							radius: Appearance.rounding.small
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0)
-							// border.color: Appearance.colors.on_background
+							color: Colors.withAlpha(Colors.dark.surface, 0)
+							// border.color: Colors.colors.on_background
 							// border.width: 2
 						}
 
@@ -148,9 +147,8 @@ Loader {
 						}
 
 						onModelChanged: {
-							if (root.currentIndex >= model.values.length) {
+							if (root.currentIndex >= model.values.length)
 								root.currentIndex = Math.max(0, model.values.length - 1);
-							}
 						}
 
 						delegate: MouseArea {
@@ -209,7 +207,7 @@ Loader {
 								}
 
 								readonly property bool selected: entryMouseArea.containsMouse || (listView.currentIndex === entryMouseArea.index && listView.activeFocus)
-								color: selected ? Appearance.colors.withAlpha(Appearance.colors.on_surface, 0.1) : "transparent"
+								color: selected ? Colors.withAlpha(Colors.dark.on_surface, 0.1) : "transparent"
 								radius: Appearance.rounding.normal
 
 								Behavior on color {
@@ -224,7 +222,7 @@ Loader {
 									anchors.margins: Appearance.padding.small
 									spacing: Appearance.spacing.normal
 
-									Loader { 
+									Loader {
 										active: root.isLauncherOpen
 										asynchronous: true
 
@@ -232,28 +230,28 @@ Loader {
 										Layout.preferredHeight: 40
 
 										sourceComponent: IconImage {
-										Layout.alignment: Qt.AlignVCenter
-										Layout.preferredWidth: 40
-										Layout.preferredHeight: 40
-										asynchronous: true
-										source: Quickshell.iconPath(entryMouseArea.modelData.icon) || ""
+											Layout.alignment: Qt.AlignVCenter
+											Layout.preferredWidth: 40
+											Layout.preferredHeight: 40
+											asynchronous: true
+											source: Quickshell.iconPath(entryMouseArea.modelData.icon) || ""
 
-										opacity: 0
-										Component.onCompleted: {
-											opacity = 1;
-										}
-										Behavior on opacity {
-											NumbAnim {}
+											opacity: 0
+											Component.onCompleted: {
+												opacity = 1;
+											}
+											Behavior on opacity {
+												NumbAnim {}
+											}
 										}
 									}
-								}
 
 									StyledText {
 										Layout.fillWidth: true
 										Layout.alignment: Qt.AlignVCenter
 										text: entryMouseArea.modelData.name || ""
 										font.pixelSize: Appearance.fonts.normal
-										color: Appearance.colors.on_background
+										color: Colors.colors.on_background
 										elide: Text.ElideRight
 
 										opacity: 0
@@ -272,7 +270,7 @@ Loader {
 						highlightResizeDuration: Appearance.animations.durations.small
 						highlightMoveDuration: Appearance.animations.durations.small
 						highlight: Rectangle {
-							color: Appearance.colors.primary
+							color: Colors.colors.primary
 							radius: Appearance.rounding.normal
 							opacity: 0.06
 
@@ -298,5 +296,4 @@ Loader {
 			root.isLauncherOpen = !root.isLauncherOpen;
 		}
 	}
-}
 }

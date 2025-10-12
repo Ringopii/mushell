@@ -45,8 +45,8 @@ Scope {
 				Rectangle {
 					anchors.fill: parent
 					radius: Appearance.rounding.large
-					color: Appearance.colors.background
-					border.color: Appearance.colors.outline
+					color: Colors.colors.background
+					border.color: Colors.colors.outline
 					border.width: 2
 
 					property int padding: Appearance.spacing.large
@@ -157,7 +157,7 @@ Scope {
 										id: icon
 
 										icon: iconDelegate.modelData.icon
-										color: iconDelegate.index === screencapture.currentIndex ? Appearance.colors.primary : Appearance.colors.outline
+										color: iconDelegate.index === screencapture.currentIndex ? Colors.colors.primary : Colors.colors.outline
 										font.pixelSize: Appearance.fonts.large * 1.1
 										Layout.margins: Appearance.spacing.small
 										Layout.alignment: Qt.AlignVCenter
@@ -172,7 +172,7 @@ Scope {
 									StyledText {
 										id: name
 
-										color: iconDelegate.index === screencapture.currentIndex ? Appearance.colors.primary : Appearance.colors.outline
+										color: iconDelegate.index === screencapture.currentIndex ? Colors.colors.primary : Colors.colors.outline
 										font.pixelSize: Appearance.fonts.large * 1.1
 										Layout.margins: Appearance.spacing.small
 										text: iconDelegate.modelData.name

@@ -12,7 +12,7 @@ Rectangle {
 	Layout.fillHeight: true
 	clip: true
 	color: "transparent"
-	// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
+	// color: Colors.colors.withAlpha(Colors.colors.background, 0.79)
 	implicitWidth: container.width
 	radius: Appearance.rounding.small
 
@@ -65,7 +65,7 @@ Rectangle {
 						id: bgCon
 						anchors.fill: parent
 						anchors.margins: 2
-						color: Appearance.colors.primary
+						color: Colors.colors.primary
 						radius: Appearance.rounding.small
 						visible: delegateRoot.modelData.profile == PowerProfiles.profile
 
@@ -130,7 +130,7 @@ Rectangle {
 							width: 0
 							height: width
 							radius: width / 2
-							color: Appearance.colors.primary
+							color: Colors.colors.primary
 							opacity: 0
 
 							ParallelAnimation {
@@ -222,9 +222,8 @@ Rectangle {
 
 							ScriptAction {
 								script: {
-									if (delegateRoot.modelData.profile == PowerProfiles.profile) {
+									if (delegateRoot.modelData.profile == PowerProfiles.profile)
 										selectionPulse.start();
-									}
 								}
 							}
 						}
@@ -237,8 +236,9 @@ Rectangle {
 
 					MatIcon {
 						id: fgText
+
 						anchors.centerIn: parent
-						color: bgCon.visible ? Appearance.colors.on_primary : Appearance.colors.on_background
+						color: bgCon.visible ? Colors.colors.on_primary : Colors.colors.on_background
 						font.pixelSize: Appearance.fonts.large * 1.2
 						icon: delegateRoot.modelData.icon
 

@@ -36,7 +36,7 @@ Loader {
 				Layout.alignment: Qt.AlignVCenter
 				Layout.preferredWidth: 220
 				Layout.preferredHeight: 25
-				color: mArea.containsPress ? Appearance.colors.withAlpha(Appearance.colors.on_surface, 0.08) : mArea.containsMouse ? Appearance.colors.withAlpha(Appearance.colors.on_surface, 0.16) : Appearance.colors.withAlpha(Appearance.colors.on_surface, 0.20)
+				color: mArea.containsPress ? Colors.withAlpha(Colors.colors.on_surface, 0.08) : mArea.containsMouse ? Colors.withAlpha(Colors.colors.on_surface, 0.16) : Colors.withAlpha(Colors.colors.on_surface, 0.20)
 				radius: Appearance.rounding.normal
 
 				Behavior on color {

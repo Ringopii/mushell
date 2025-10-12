@@ -23,9 +23,9 @@ Loader {
 
 		Layout.fillWidth: true
 		Layout.fillHeight: true
-		color: Appearance.colors.background
+		color: Colors.colors.background
 		radius: Appearance.rounding.normal
-		border.color: Appearance.colors.outline
+		border.color: Colors.colors.outline
 		border.width: 2
 
 		ScrollView {
@@ -75,7 +75,7 @@ Loader {
 
 						width: listViewNotifs.width
 						height: Math.max(120, contentLayout.implicitHeight + 10)
-						color: Appearance.colors.withAlpha(Appearance.colors.surface_container, 0.7)
+						color: Colors.withAlpha(Colors.dark.surface_container, 0.7)
 						radius: Appearance.rounding.normal
 
 						RowLayout {
@@ -105,7 +105,7 @@ Loader {
 										width: 65
 										height: 65
 										radius: Appearance.rounding.full
-										color: flickDelegate.modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.error : flickDelegate.modelData.urgency === NotificationUrgency.Low ? Appearance.colors.surface_container_highest : Appearance.colors.secondary_container
+										color: flickDelegate.modelData.urgency === NotificationUrgency.Critical ? Colors.colors.error : flickDelegate.modelData.urgency === NotificationUrgency.Low ? Colors.colors.surface_container_highest : Colors.colors.secondary_container
 
 										Loader {
 											id: icon
@@ -129,7 +129,7 @@ Loader {
 											anchors.verticalCenterOffset: Appearance.fonts.large * 0.02
 											sourceComponent: MatIcon {
 												text: "release_alert"
-												color: flickDelegate.modelData.urgency === NotificationUrgency.Critical ? Appearance.colors.on_error : flickDelegate.modelData.urgency === NotificationUrgency.Low ? Appearance.colors.on_surface : Appearance.colors.on_secondary_container
+												color: flickDelegate.modelData.urgency === NotificationUrgency.Critical ? Colors.colors.on_error : flickDelegate.modelData.urgency === NotificationUrgency.Low ? Colors.colors.on_surface : Colors.colors.on_secondary_container
 												font.pointSize: Appearance.fonts.large
 											}
 										}
@@ -153,7 +153,7 @@ Loader {
 										height: 28
 										radius: width / 2
 										color: "white"
-										border.color: Appearance.colors.surface
+										border.color: Colors.colors.surface
 										border.width: 2
 
 										ClippingRectangle {
@@ -199,14 +199,14 @@ Loader {
 										Layout.fillWidth: true
 										text: flickDelegate.modelData.appName
 										font.pixelSize: Appearance.fonts.small * 0.9
-										color: Appearance.colors.on_background
+										color: Colors.colors.on_background
 										elide: Text.ElideRight
 									}
 
 									MatIcon {
 										icon: "close"
 										font.pixelSize: Appearance.fonts.large * 1.8
-										color: mIcon.containsMouse ? Appearance.colors.withAlpha(Appearance.colors.error, 0.4) : Appearance.colors.error
+										color: mIcon.containsMouse ? Colors.withAlpha(Colors.dark.error, 0.4) : Colors.colors.error
 
 										MouseArea {
 											id: mIcon
@@ -229,7 +229,7 @@ Loader {
 									Layout.fillWidth: true
 									text: flickDelegate.modelData.summary
 									font.pixelSize: Appearance.fonts.normal
-									color: Appearance.colors.on_background
+									color: Colors.colors.on_background
 									font.bold: true
 									elide: Text.ElideRight
 									wrapMode: Text.WordWrap
@@ -241,7 +241,7 @@ Loader {
 									Layout.fillWidth: true
 									text: flickDelegate.modelData.body || ""
 									font.pixelSize: Appearance.fonts.small * 1.2
-									color: Appearance.colors.on_background
+									color: Colors.colors.on_background
 									textFormat: Text.MarkdownText
 									Layout.preferredWidth: parent.width
 									wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -266,9 +266,9 @@ Loader {
 
 											required property NotificationAction modelData
 
-											color: actionMouse.pressed ? Appearance.colors.primary_container : actionMouse.containsMouse ? Appearance.colors.surface_container_highest : Appearance.colors.surface_container_high
+											color: actionMouse.pressed ? Colors.colors.primary_container : actionMouse.containsMouse ? Colors.colors.surface_container_highest : Colors.colors.surface_container_high
 
-											border.color: actionMouse.containsMouse ? Appearance.colors.primary : Appearance.colors.outline
+											border.color: actionMouse.containsMouse ? Colors.colors.primary : Colors.colors.outline
 											border.width: actionMouse.containsMouse ? 2 : 1
 											radius: 6
 
@@ -276,7 +276,7 @@ Loader {
 												anchors.fill: parent
 												anchors.topMargin: 1
 												color: "transparent"
-												border.color: Appearance.colors.withAlpha(Appearance.colors.background, 0.01)
+												border.color: Colors.withAlpha(Colors.dark.background, 0.01)
 												border.width: actionMouse.pressed ? 0 : 1
 												radius: parent.radius
 												visible: !actionMouse.pressed
@@ -304,7 +304,7 @@ Loader {
 													width: 0
 													height: 0
 													radius: width / 2
-													color: Appearance.colors.withAlpha(Appearance.colors.primary, 0.3)
+													color: Colors.withAlpha(Colors.dark.primary, 0.3)
 													visible: false
 
 													SequentialAnimation {
@@ -354,7 +354,7 @@ Loader {
 												text: actionButton.modelData.text
 												font.pixelSize: Appearance.fonts.small * 1.1
 												font.weight: actionMouse.containsMouse ? Font.Medium : Font.Normal
-												color: actionMouse.containsMouse ? Appearance.colors.on_primary_container : Appearance.colors.on_surface
+												color: actionMouse.containsMouse ? Colors.colors.on_primary_container : Colors.colors.on_surface
 												elide: Text.ElideRight
 											}
 

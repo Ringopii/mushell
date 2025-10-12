@@ -7,70 +7,59 @@ import Quickshell.Services.Pipewire
 import qs.Data
 import qs.Helpers
 import qs.Components
-import qs.Windows
 
-Loader {
+Rectangle {
 	id: root
-
-	active: root.isBarOpen
-	asynchronous: true
 
 	property string icon: Audio.getIcon(root.node)
 	property PwNode node: Pipewire.defaultAudioSink
 
-	sourceComponent: Rectangle {
+	Layout.fillHeight: true
+	// color: Colors.colors.withAlpha(Colors.colors.background, 0.79)
+	color: "transparent"
+	implicitWidth: container.width
+	radius: 5
 
-		Layout.fillHeight: true
-		// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
-		color: "transparent"
-		implicitWidth: container.width
-		radius: 5
+	Behavior on implicitWidth {
+		NumbAnim {}
+	}
 
-		Behavior on implicitWidth {
-			NumbAnim {}
-		}
+	PwObjectTracker {
+		objects: [root.node]
+	}
 
-		PwObjectTracker {
-			objects: [root.node]
-		}
+	Dots {
+		id: container
 
-		Dots {
-			id: container
+		spacing: 5
 
-			spacing: 5
-
-			MatIcon {
-				color: Appearance.colors.on_background
-				icon: root.icon
-				Layout.alignment: Qt.AlignVCenter
-				font.pixelSize: Appearance.fonts.large * 1.2
-				font.variableAxes: {
-					"FILL": 10
-				}
-			}
-
-			StyledText {
-				color: Appearance.colors.on_background
-				text: (root.node.audio.volume * 100).toFixed(0) + "%"
-				Layout.alignment: Qt.AlignVCenter
-				font.pixelSize: Appearance.fonts.medium
+		MatIcon {
+			color: Colors.colors.on_background
+			icon: root.icon
+			Layout.alignment: Qt.AlignVCenter
+			font.pixelSize: Appearance.fonts.large * 1.2
+			font.variableAxes: {
+				"FILL": 10
 			}
 		}
 
-		Mixer {
-			id: mixer
+		StyledText {
+			color: Colors.colors.on_background
+			text: (root.node.audio.volume * 100).toFixed(0) + "%"
+			Layout.alignment: Qt.AlignVCenter
+			font.pixelSize: Appearance.fonts.medium
+		}
+	}
+
+	MouseArea {
+		acceptedButtons: Qt.MiddleButton | Qt.LeftButton
+		anchors.fill: parent
+
+		onClicked: mevent => {
+			if (mevent.button === Qt.MiddleButton)
+				Audio.toggleMute(root.node);
 		}
 
-		MouseArea {
-			acceptedButtons: Qt.MiddleButton | Qt.LeftButton
-			anchors.fill: parent
-
-			onClicked: mevent => {
-				if (mevent.button === Qt.MiddleButton)
-					Audio.toggleMute(root.node);
-			}
-
-			onWheel: mevent => Audio.wheelAction(mevent, root.node)
-		}
+		onWheel: mevent => Audio.wheelAction(mevent, root.node)
 	}
 }

@@ -1,47 +1,37 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
 
 import qs.Data
 import qs.Helpers
-import qs.Components
 
-Loader {
-	active: root.isBarOpen
-	asynchronous: true
+Rectangle {
+	Layout.fillHeight: true
+	color: "transparent"
+	// color: Colors.colors.withAlpha(Colors.colors.background, 0.79)
+	implicitWidth: container.width
+	radius: 5
 
-	height: parent.height / 1 - 5
-	width: parent.width + 10
+	Dots {
+		id: container
 
-	sourceComponent: Rectangle {
-		Layout.fillHeight: true
-		color: "transparent"
-		// color: Appearance.colors.withAlpha(Appearance.colors.background, 0.79)
-		implicitWidth: container.width
-		radius: 5
+		MatIcon {
+			Layout.alignment: Qt.AlignLeft | Qt.AlignHCenter
+			color: Colors.colors.tertiary
+			font.family: Appearance.fonts.family_Mono
+			font.pixelSize: Appearance.fonts.large * 1.7
+			icon: "󱄅"
 
-		Dots {
-			id: container
+			MouseArea {
+				id: mArea
 
-			MatIcon {
-				Layout.alignment: Qt.AlignLeft | Qt.AlignHCenter
-				color: Appearance.colors.tertiary
-				font.family: Appearance.fonts.family_Mono
-				font.pixelSize: Appearance.fonts.large * 1.7
-				icon: "󱄅"
-
-				MouseArea {
-					id: mArea
-
-					anchors.fill: parent
-					hoverEnabled: true
-					cursorShape: Qt.PointingHandCursor
-					onClicked: menu.isMenuOpen = !menu.isMenuOpen
-				}
+				anchors.fill: parent
+				hoverEnabled: true
+				cursorShape: Qt.PointingHandCursor
+				onClicked: menu.isMenuOpen = !menu.isMenuOpen
 			}
 		}
-		Menu {
-			id: menu
-		}
+	}
+	Menu {
+		id: menu
 	}
 }

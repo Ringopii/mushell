@@ -48,10 +48,9 @@ Scope {
 						Layout.alignment: Qt.AlignCenter
 						text: Qt.formatDateTime(Time?.date, "h:mm AP")
 						font.pixelSize: Appearance.fonts.extraLarge * 2.5
-						font.family: "Inter"
 						font.bold: true
 						antialiasing: true
-						color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.5)
+						color: Colors.colors.secondary
 					}
 
 					RowLayout {
@@ -62,9 +61,8 @@ Scope {
 
 							text: Qt.formatDateTime(Time?.date, "dddd")
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 
 						StyledText {
@@ -72,9 +70,8 @@ Scope {
 
 							text: Qt.formatDateTime(Time?.date, "MMMM")
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 
 						StyledText {
@@ -82,9 +79,8 @@ Scope {
 
 							text: Qt.formatDateTime(Time?.date, "yyyy")
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 
 						IconImage {
@@ -92,7 +88,7 @@ Scope {
 
 							Layout.alignment: Qt.AlignHCenter
 							implicitSize: 37
-							source: Qt.resolvedUrl("https://openweathermap.org/img/wn/" + Weather.weatherIconData + "@4x.png")
+							source: Qt.resolvedUrl("https://openweathermap.org/img/wn/" + Weather.weatherIconData + "@4x.png") || Quickshell.iconPath("stock_weather-cloudy")
 							asynchronous: true
 							smooth: true
 						}
@@ -102,19 +98,16 @@ Scope {
 
 							text: Weather.tempData + "°"
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 
 						MatIcon {
-							id: humidityIcon
-
+							id: huy
 							icon: "humidity_low"
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 
 						StyledText {
@@ -122,9 +115,8 @@ Scope {
 
 							text: Weather.humidityData + "%"
 							font.pixelSize: Appearance.fonts.large
-							color: Appearance.colors.withAlpha(Appearance.colors.surface, 0.3)
+							color: Colors.withAlpha(Colors.colors.secondary, 1)
 							antialiasing: true
-							font.bold: true
 						}
 					}
 				}

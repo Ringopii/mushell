@@ -18,8 +18,8 @@ Loader {
 
 		anchors.centerIn: parent
 		radius: Appearance.rounding.normal
-		color: Appearance.colors.background
-		border.color: Appearance.colors.outline
+		color: Colors.colors.background
+		border.color: Colors.colors.outline
 		border.width: 2
 
 		GridLayout {
@@ -51,7 +51,7 @@ Loader {
 
 						Layout.alignment: Qt.AlignHCenter
 						text: "RAM usage" + "\n" + root.memProp + " GB"
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}
@@ -81,7 +81,7 @@ Loader {
 
 						Layout.alignment: Qt.AlignHCenter
 						text: "CPU usage"
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}
@@ -108,7 +108,7 @@ Loader {
 
 						Layout.alignment: Qt.AlignHCenter
 						text: "Disk usage" + "\n" + root.diskProp + " GB"
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}
@@ -129,7 +129,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wired Download:\n" + SysUsage.formatSpeed(SysUsage.wiredDownloadSpeed)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -137,7 +137,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wired Upload:\n" + SysUsage.formatSpeed(SysUsage.wiredUploadSpeed)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -145,7 +145,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wireless Download:\n" + SysUsage.formatSpeed(SysUsage.wirelessDownloadSpeed)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -153,7 +153,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wireless Upload:\n" + SysUsage.formatSpeed(SysUsage.wirelessUploadSpeed)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}
@@ -174,7 +174,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wired download usage:\n" + SysUsage.formatUsage(SysUsage.totalWiredDownloadUsage)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -182,7 +182,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wired upload usage:\n" + SysUsage.formatUsage(SysUsage.totalWiredUploadUsage)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -190,7 +190,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wireless download usage:\n" + SysUsage.formatUsage(SysUsage.totalWirelessDownloadUsage)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -198,7 +198,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wireless upload usage:\n" + SysUsage.formatUsage(SysUsage.totalWirelessUploadUsage)
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}
@@ -219,7 +219,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wired interface:\n" + SysUsage.wiredInterface
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 
 					StyledText {
@@ -227,7 +227,7 @@ Loader {
 						Layout.fillWidth: true
 						horizontalAlignment: Text.AlignHCenter
 						text: "Wireless interface:\n" + SysUsage.wirelessInterface
-						color: Appearance.colors.on_surface
+						color: Colors.colors.on_surface
 					}
 				}
 			}

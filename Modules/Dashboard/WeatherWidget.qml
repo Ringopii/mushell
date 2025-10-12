@@ -16,8 +16,8 @@ Loader {
 		implicitHeight: 420
 
 		radius: Appearance.rounding.normal
-		color: Appearance.colors.background
-		border.color: Appearance.colors.outline
+		color: Colors.colors.background
+		border.color: Colors.colors.outline
 		border.width: 2
 
 		ColumnLayout {
@@ -29,7 +29,7 @@ Loader {
 				Layout.alignment: Qt.AlignHCenter
 				text: Weather.cityData
 
-				color: Appearance.colors.on_surface
+				color: Colors.colors.on_surface
 				font.pixelSize: Appearance.fonts.large * 1.2
 				font.weight: Font.Bold
 			}
@@ -55,7 +55,7 @@ Loader {
 				StyledText {
 					Layout.alignment: Qt.AlignVCenter
 					text: Weather.tempData + "°C"
-					color: Appearance.colors.primary
+					color: Colors.colors.primary
 					font.pixelSize: Appearance.fonts.extraLarge * 2.5
 					font.weight: Font.Light
 				}
@@ -64,7 +64,7 @@ Loader {
 			StyledText {
 				Layout.alignment: Qt.AlignHCenter
 				text: Weather.weatherDescriptionData.charAt(0).toUpperCase() + Weather.weatherDescriptionData.slice(1)
-				color: Appearance.colors.on_surface_variant
+				color: Colors.colors.on_surface_variant
 				font.pixelSize: Appearance.fonts.normal * 1.5
 				wrapMode: Text.WordWrap
 				horizontalAlignment: Text.AlignHCenter
@@ -90,14 +90,14 @@ Loader {
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: Weather.tempMinData + "° / " + Weather.tempMaxData + "°"
-							color: Appearance.colors.on_surface
+							color: Colors.colors.on_surface
 							font.weight: Font.Bold
 							font.pixelSize: Appearance.fonts.small * 1.5
 						}
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: "Min / Max"
-							color: Appearance.colors.on_surface_variant
+							color: Colors.colors.on_surface_variant
 							font.pixelSize: Appearance.fonts.small * 1.2
 						}
 					}
@@ -109,14 +109,14 @@ Loader {
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: Weather.humidityData + "%"
-							color: Appearance.colors.on_surface
+							color: Colors.colors.on_surface
 							font.weight: Font.Bold
 							font.pixelSize: Appearance.fonts.small * 1.5
 						}
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: "Kelembapan"
-							color: Appearance.colors.on_surface_variant
+							color: Colors.colors.on_surface_variant
 							font.pixelSize: Appearance.fonts.small * 1.2
 						}
 					}
@@ -128,14 +128,14 @@ Loader {
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: Weather.windSpeedData + " m/s"
-							color: Appearance.colors.on_surface
+							color: Colors.colors.on_surface
 							font.weight: Font.Bold
 							font.pixelSize: Appearance.fonts.small * 1.5
 						}
 						StyledText {
 							Layout.alignment: Qt.AlignHCenter
 							text: "Angin"
-							color: Appearance.colors.on_surface_variant
+							color: Colors.colors.on_surface_variant
 							font.pixelSize: Appearance.fonts.small * 1.2
 						}
 					}

@@ -104,7 +104,7 @@ Scope {
 			Rectangle {
 				anchors.fill: parent
 				radius: height / 2
-				color: Appearance.colors.background
+				color: Colors.colors.background
 				Volumes {}
 			}
 		}
@@ -129,7 +129,7 @@ Scope {
 			Rectangle {
 				anchors.fill: parent
 				radius: height / 2
-				color: Appearance.colors.background
+				color: Colors.colors.background
 
 				Row {
 					anchors.centerIn: parent
@@ -137,13 +137,13 @@ Scope {
 
 					StyledText {
 						text: "Caps Lock"
-						color: Appearance.colors.on_background
+						color: Colors.colors.on_background
 						font.pixelSize: Appearance.fonts.large * 1.5
 					}
 
 					MatIcon {
 						icon: root.capsLockState ? "lock" : "lock_open_right"
-						color: root.capsLockState ? Appearance.colors.primary : Appearance.colors.tertiary
+						color: root.capsLockState ? Colors.colors.primary : Colors.colors.tertiary
 						font.pixelSize: Appearance.fonts.large * 1.5
 					}
 				}
@@ -170,7 +170,7 @@ Scope {
 			Rectangle {
 				anchors.fill: parent
 				radius: height / 2
-				color: Appearance.colors.background
+				color: Colors.colors.background
 
 				Row {
 					anchors.centerIn: parent
@@ -178,13 +178,13 @@ Scope {
 
 					StyledText {
 						text: "Num Lock"
-						color: Appearance.colors.on_background
+						color: Colors.colors.on_background
 						font.pixelSize: Appearance.fonts.large * 1.5
 					}
 
 					MatIcon {
 						icon: root.numLockState ? "lock" : "lock_open_right"
-						color: root.numLockState ? Appearance.colors.primary : Appearance.colors.tertiary
+						color: root.numLockState ? Colors.colors.primary : Colors.colors.tertiary
 						font.pixelSize: Appearance.fonts.large * 1.5
 					}
 				}

@@ -37,8 +37,8 @@ Scope {
 				Rectangle {
 					anchors.fill: parent
 					radius: Appearance.rounding.normal
-					color: Appearance.colors.background
-					border.color: Appearance.colors.outline
+					color: Colors.colors.background
+					border.color: Colors.colors.outline
 					border.width: 2
 
 					ColumnLayout {
@@ -101,7 +101,7 @@ Scope {
 								Layout.preferredHeight: 70
 
 								radius: Appearance.rounding.normal
-								color: isHighlighted ? Appearance.colors.withAlpha(Appearance.colors.secondary, 0.2) : "transparent"
+								color: isHighlighted ? Colors.withAlpha(Colors.colors.secondary, 0.2) : "transparent"
 
 								Behavior on color {
 									ColAnim {}
@@ -110,7 +110,7 @@ Scope {
 								MatIcon {
 									id: iconDelegate
 
-									color: Appearance.colors.primary
+									color: Colors.colors.primary
 									font.pixelSize: Appearance.fonts.large * 4
 									icon: rectDelegate.modelData.icon
 

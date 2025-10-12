@@ -15,7 +15,7 @@ RowLayout {
 	}
 
 	MatIcon {
-		color: Appearance.colors.on_background
+		color: Colors.dark.on_background
 		icon: root.icon
 		Layout.alignment: Qt.AlignVCenter
 		font.pixelSize: Appearance.fonts.extraLarge * 1.2
@@ -26,7 +26,7 @@ RowLayout {
 
 		implicitHeight: 10
 		radius: 20
-		color: Appearance.colors.withAlpha(Appearance.colors.primary, 0.3)
+		color: Colors.withAlpha(Colors.dark.primary, 0.3)
 
 		Rectangle {
 			anchors {
@@ -35,7 +35,7 @@ RowLayout {
 				bottom: parent.bottom
 			}
 
-			color: Appearance.colors.primary
+			color: Colors.dark.primary
 
 			implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
 			radius: parent.radius

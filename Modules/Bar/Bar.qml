@@ -46,7 +46,7 @@ Scope {
 				sourceComponent: Rectangle {
 					id: base
 
-					color: Appearance.colors.background
+					color: Colors.colors.background
 					radius: Appearance.rounding.large
 					anchors.fill: parent
 					anchors.margins: 4

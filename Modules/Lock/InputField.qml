@@ -15,7 +15,7 @@ RowLayout {
 		focus: true
 		enabled: !root.pam.unlockInProgress
 
-		color: root.pam.unlockInProgress ? Appearance.colors.on_surface_variant : Appearance.colors.on_surface
+		color: root.pam.unlockInProgress ? Colors.colors.on_surface_variant : Colors.colors.on_surface
 
 		font.family: Appearance.fonts.family_Sans
 		font.pixelSize: Appearance.fonts.large
@@ -23,15 +23,15 @@ RowLayout {
 		background: Rectangle {
 			anchors.fill: parent
 
-			color: passwordBox.activeFocus ? Appearance.colors.surface_container_high : Appearance.colors.surface_container
+			color: passwordBox.activeFocus ? Colors.colors.surface_container_high : Colors.colors.surface_container
 
 			border.color: {
 				if (!passwordBox.enabled)
-					return Appearance.colors.withAlpha(Appearance.colors.outline, 0.12);
+					return Colors.withAlpha(Colors.dark.outline, 0.12);
 				else if (passwordBox.activeFocus)
-					return Appearance.colors.primary;
+					return Colors.colors.primary;
 				else
-					return Appearance.colors.outline;
+					return Colors.colors.outline;
 			}
 
 			border.width: passwordBox.activeFocus ? 2 : 1
@@ -79,10 +79,10 @@ RowLayout {
 		inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
 
 		placeholderText: "Enter password"
-		placeholderTextColor: Appearance.colors.on_surface_variant
+		placeholderTextColor: Colors.colors.on_surface_variant
 
-		selectionColor: Appearance.colors.withAlpha(Appearance.colors.primary, 0.24)
-		selectedTextColor: Appearance.colors.on_primary
+		selectionColor: Colors.withAlpha(Colors.dark.primary, 0.24)
+		selectedTextColor: Colors.colors.on_primary
 
 		onAccepted: {
 			if (root.pam && text.length > 0) {
@@ -139,7 +139,7 @@ RowLayout {
 			width: 20
 			height: 20
 			radius: 10
-			color: Appearance.colors.primary
+			color: Colors.colors.primary
 			visible: root.pam.unlockInProgress
 			opacity: visible ? 1 : 0
 

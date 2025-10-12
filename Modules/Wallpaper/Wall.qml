@@ -13,13 +13,7 @@ Scope {
 		path: Qt.resolvedUrl(Quickshell.env("HOME") + "/.cache/wall/path.txt")
 
 		watchChanges: true
-		onFileChanged: {
-			this.reload();
-			Quickshell.execDetached({
-				// What the fuck is this
-				command: ["sh", "-c", `${Quickshell.shellDir}/Assets/generate_colors.sh ${Quickshell.shellDir}/Data/Appearance.qml`]
-			});
-		}
+		onFileChanged: reload()
 		onAdapterUpdated: writeAdapter()
 	}
 

@@ -58,7 +58,7 @@ Scope {
 			WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
 			Rectangle {
-				color: Appearance.colors.background
+				color: Colors.colors.background
 				anchors.fill: contentGrid
 				anchors.margins: -12
 			}
@@ -98,9 +98,9 @@ Scope {
 						implicitWidth: root.containerWidth
 						implicitHeight: root.containerHeight
 
-						color: Appearance.colors.on_background
+						color: Colors.colors.on_background
 						border.width: 2
-						border.color: hasMaximized ? "red" : workspace?.focused ? Appearance.colors.primary : Appearance.colors.on_primary
+						border.color: hasMaximized ? "red" : workspace?.focused ? Colors.colors.primary : Colors.colors.on_primary
 						clip: true
 
 						FileView {

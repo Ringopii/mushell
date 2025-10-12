@@ -7,7 +7,6 @@ import QtQuick.Layouts
 import Quickshell.Wayland
 
 import qs.Data
-import qs.Components
 
 WlSessionLockSurface {
 	id: root
@@ -27,7 +26,7 @@ WlSessionLockSurface {
 		id: surface
 
 		anchors.fill: parent
-		color: Appearance.colors.surface_container_lowest
+		color: Colors.colors.surface_container_lowest
 
 		ScreencopyView {
 			id: wallpaper
@@ -76,11 +75,12 @@ WlSessionLockSurface {
 
 			Rectangle {
 				id: errorContainer
+
 				Layout.alignment: Qt.AlignHCenter
 				Layout.preferredHeight: errorLabel.implicitHeight + Appearance.padding.normal * 2
 				Layout.preferredWidth: Math.max(errorLabel.implicitWidth + Appearance.padding.large * 2, 200)
 
-				color: Appearance.colors.error_container
+				color: Colors.colors.error_container
 				radius: Appearance.rounding.normal
 				visible: root.pam ? root.pam.showFailure : false
 				opacity: 0
@@ -90,7 +90,7 @@ WlSessionLockSurface {
 					id: errorLabel
 					anchors.centerIn: parent
 					text: "Incorrect password"
-					color: Appearance.colors.on_error_container
+					color: Colors.colors.on_error_container
 					font.pixelSize: Appearance.fonts.medium
 					font.family: Appearance.fonts.family_Sans
 				}
@@ -163,6 +163,7 @@ WlSessionLockSurface {
 
 	SequentialAnimation {
 		id: entrySequence
+
 		running: true
 
 		ParallelAnimation {

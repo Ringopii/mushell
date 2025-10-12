@@ -21,9 +21,9 @@ Loader {
 
 		Layout.fillWidth: true
 		Layout.fillHeight: true
-		color: Player.active == null ? Appearance.colors.withAlpha(Appearance.colors.background, 0.8) : Appearance.colors.withAlpha(Appearance.colors.background, 0.5)
+		color: Player.active == null ? Colors.withAlpha(Colors.colors.background, 0.8) : Colors.withAlpha(Colors.colors.background, 0.5)
 		radius: Appearance.rounding.normal
-		border.color: Appearance.colors.outline
+		border.color: Colors.colors.outline
 		border.width: 2
 		clip: true
 
@@ -185,7 +185,7 @@ Loader {
 
 								anchors.horizontalCenter: parent.horizontalCenter
 								text: Player.active == null ? "null" : Player.active.trackTitle
-								color: Appearance.colors.on_background
+								color: Colors.colors.on_background
 								font.pixelSize: Appearance.fonts.medium * 1.5
 								font.bold: true
 								horizontalAlignment: Text.AlignHCenter
@@ -198,7 +198,7 @@ Loader {
 
 								anchors.horizontalCenter: parent.horizontalCenter
 								text: Player.active == null ? "null" : Player.active.trackArtist
-								color: Appearance.colors.on_background
+								color: Colors.colors.on_background
 								font.pixelSize: Appearance.fonts.medium * 1.1
 								opacity: 0.8
 								horizontalAlignment: Text.AlignHCenter
@@ -249,7 +249,7 @@ Loader {
 
 										anchors.fill: parent
 										anchors.margins: 4
-										color: Appearance.colors.primary
+										color: Colors.colors.primary
 										radius: Appearance.rounding.small
 										opacity: clickArea.containsMouse ? 1 : 0.7
 										scale: clickArea.pressed ? 0.95 : 1.0
@@ -274,7 +274,7 @@ Loader {
 
 									MatIcon {
 										anchors.centerIn: parent
-										color: Appearance.colors.on_primary
+										color: Colors.colors.on_primary
 										font.pixelSize: Appearance.fonts.large * 1.5
 										icon: delegateController.modelData.icon
 									}
@@ -291,7 +291,7 @@ Loader {
 
 								anchors.horizontalCenter: parent.horizontalCenter
 								text: Player.active == null ? "00:00" : root.formatTime(Player.active.position)
-								color: Appearance.colors.on_background
+								color: Colors.colors.on_background
 
 								Timer {
 									running: Player.active.playbackState == MprisPlaybackState.Playing
