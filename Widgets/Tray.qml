@@ -113,14 +113,9 @@ StyledRect {
 							}
 
 							if (validWindow) {
-								var globalPos = mapToGlobal(0, 0);
-								var currentScreen = root.parentScreen || validWindow.screen;
-								var screenX = currentScreen ? currentScreen.x : 0;
-								var relativeX = globalPos.x - screenX;
-
 								menuAnchor.menu = delegateTray.modelData?.menu;
 								menuAnchor.anchor.window = validWindow;
-								menuAnchor.anchor.rect = Qt.rect(relativeX, 35 + Appearance.spacing.small, parent.width, 1);
+								menuAnchor.anchor.rect = delegateTray.QsWindow.window.contentItem.mapFromItem(delegateTray, 0, delegateTray.height, delegateTray.width, delegateTray.width);
 								menuAnchor.open();
 							} else {
 								console.warn("Cannot find valid Quickshell window for tray menu");
