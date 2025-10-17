@@ -2,15 +2,13 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Services.Pipewire
 
-import qs.Widgets
 import qs.Data
+import qs.Widgets
 import qs.Components
 
 Loader {
-	active: root.isBarOpen
+	active: true
 	asynchronous: true
 
 	sourceComponent: StyledRect {
@@ -63,21 +61,16 @@ Loader {
 
 					anchors.fill: parent
 					hoverEnabled: true
-					onClicked: controlCenterLoader.activeAsync = !controlCenterLoader.activeAsync
+					cursorShape: Qt.PointingHandCursor
+					// onClicked: controlCenter.controlCenterShow = !controlCenter.controlCenterShow
 				}
 			}
 		}
 
-		LazyLoader {
-			id: controlCenterLoader
-
-			active: false
-
-			component: ControlCenter {
-				modelData: bar
-
-				node: Pipewire.defaultAudioSource
-			}
-		}
+		// ControlCenter {
+		// 	id: controlCenter
+		//
+		// 	controlCenterShow: root.isBarOpen
+		// }
 	}
 }

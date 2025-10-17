@@ -5,7 +5,7 @@ import qs.Data
 import qs.Widgets
 
 Loader {
-	active: root.isBarOpen
+	active: true
 	asynchronous: true
 
 	sourceComponent: RowLayout {
