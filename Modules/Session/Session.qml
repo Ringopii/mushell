@@ -15,12 +15,16 @@ Scope {
 
 	property int currentIndex: 0
 	property bool isSessionOpen: false
+	property bool showConfirmDialog: false
+	property var pendingAction: null
+	property string pendingActionName: ""
 
 	LazyLoader {
 		active: session.isSessionOpen
 
 		component: PanelWindow {
 			id: sessionWindow
+
 			visible: session.isSessionOpen
 			focusable: true
 			anchors.right: true
@@ -43,12 +47,14 @@ Scope {
 
 					ColumnLayout {
 						anchors.fill: parent
+						anchors.margins: 10
 						spacing: 5
 
 						Repeater {
 							model: [
 								{
 									icon: "power_settings_circle",
+									name: "Shutdown",
 									action: () => {
 										Quickshell.execDetached({
 											command: ["sh", "-c", "systemctl poweroff"]
@@ -57,6 +63,7 @@ Scope {
 								},
 								{
 									icon: "restart_alt",
+									name: "Reboot",
 									action: () => {
 										Quickshell.execDetached({
 											command: ["sh", "-c", "systemctl reboot"]
@@ -65,6 +72,7 @@ Scope {
 								},
 								{
 									icon: "sleep",
+									name: "Sleep",
 									action: () => {
 										Quickshell.execDetached({
 											command: ["sh", "-c", "systemctl suspend"]
@@ -73,6 +81,7 @@ Scope {
 								},
 								{
 									icon: "door_open",
+									name: "Logout",
 									action: () => {
 										Quickshell.execDetached({
 											command: ["sh", "-c", "hyprctl dispatch exit"]
@@ -81,6 +90,7 @@ Scope {
 								},
 								{
 									icon: "lock",
+									name: "Lockscreen",
 									action: () => {
 										Quickshell.execDetached({
 											command: ["sh", "-c", "qs -c lock ipc call lock lock"]
@@ -110,28 +120,37 @@ Scope {
 								MatIcon {
 									id: iconDelegate
 
+									anchors.centerIn: parent
 									color: Colors.colors.primary
 									font.pixelSize: Appearance.fonts.large * 4
 									icon: rectDelegate.modelData.icon
 
 									focus: rectDelegate.index === session.currentIndex
 
-									Keys.onEnterPressed: {
-										rectDelegate.modelData.action();
-										session.isSessionOpen = !session.isSessionOpen;
+									Keys.onEnterPressed: handleAction()
+									Keys.onReturnPressed: handleAction()
+									Keys.onUpPressed: {
+										if (session.currentIndex > 0) 
+											session.currentIndex--;
+										
 									}
-									Keys.onReturnPressed: {
-										rectDelegate.modelData.action();
-										session.isSessionOpen = !session.isSessionOpen;
+									Keys.onDownPressed: {
+										if (session.currentIndex < 4) 
+											session.currentIndex++;
+										
 									}
-									Keys.onUpPressed: session.currentIndex > 0 ? session.currentIndex-- : ""
-									Keys.onDownPressed: session.currentIndex < 4 ? session.currentIndex++ : ""
-									Keys.onEscapePressed: session.isSessionOpen = !session.isSessionOpen
+									Keys.onEscapePressed: session.isSessionOpen = false
 
 									scale: mouseArea.pressed ? 0.95 : 1.0
 
 									Behavior on scale {
 										NumbAnim {}
+									}
+
+									function handleAction() {
+										session.pendingAction = rectDelegate.modelData.action;
+										session.pendingActionName = rectDelegate.modelData.name + "?";
+										session.showConfirmDialog = true;
 									}
 
 									MouseArea {
@@ -143,18 +162,45 @@ Scope {
 
 										onClicked: {
 											parent.focus = true;
-											{
-												rectDelegate.modelData.action();
-												session.isSessionOpen = !session.isSessionOpen;
-											}
-											;
+											session.currentIndex = rectDelegate.index;
+											parent.handleAction();
 										}
 
-										onEntered: parent.focus = true
+										onEntered: {
+											parent.focus = true;
+											session.currentIndex = rectDelegate.index;
+										}
 									}
 								}
 							}
 						}
+					}
+				}
+
+				DialogBox {
+					id: boxConfirmation
+
+					anchors.centerIn: parent
+					z: 100
+
+					header: "Session"
+					body: `Do you want to ${session.pendingActionName.toLowerCase()}`
+					active: session.showConfirmDialog
+
+					onYesClicked: {
+						if (session.pendingAction)
+							session.pendingAction();
+						
+						session.showConfirmDialog = false;
+						session.isSessionOpen = false;
+						session.pendingAction = null;
+						session.pendingActionName = "";
+					}
+
+					onNoClicked: {
+						session.showConfirmDialog = false;
+						session.pendingAction = null;
+						session.pendingActionName = "";
 					}
 				}
 			}
@@ -169,3 +215,4 @@ Scope {
 		}
 	}
 }
+
